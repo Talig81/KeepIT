@@ -1,16 +1,20 @@
-# keep_it
+# Keep IT
 
-A new Flutter project.
+The Flutter App for Keep IT
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+The app is still in developtment, more to come ! 
 
-A few resources to get you started if this is your first Flutter project:
+## TO DO:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- Develop the home page area.
+- Solve the authentication problem
+- Decide the course of action following the mock-ups
+
+## Contacts
+
+- [LinkedIn Oh belhote](https://www.linkedin.com/in/manuel-maria-474433157/)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+For help call 915718440
