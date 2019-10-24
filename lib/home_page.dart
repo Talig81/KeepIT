@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-void loginScreen() => runApp(new LoginScreen());
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-///    
-///           Login Screen
-///    So para testar ainda nao faz nada
-///    Ainda falta decidir umas cenas sobre este assunto
-/// 
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
-class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,20 +39,8 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        child: Center(
-          child: Container(
-            alignment: FractionalOffset(0.5, 0.5),
-            width: 350,
-            padding: const EdgeInsets.all(20.0),
-            height: 450,
-            color: Colors.green[100],
-            child: Center(
-              child: Container(),
-            ),
-          ),
-        ),
-      ),
+      body: new Container(),
     );
   }
+    
 }
