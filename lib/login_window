@@ -1,0 +1,7 @@
+import 'package:flutter/material.dart';
+
+class loginWindow extends StatefulWidget {
+  @override
+  _LoginWindowState createState() => _LoginWindowState();
+}
+

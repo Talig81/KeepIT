@@ -1,0 +1,27 @@
+                                                        FLUTTER STUFF
+
+------------------------------------------------------------------------------------------------------------------------------------
+decoraçao de uma caixa com sombras e efeitos
+
+ decoration: new BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.red,
+                  blurRadius: 20.0, // has the effect of softening the shadow
+                  spreadRadius: 5.0, // has the effect of extending the shadow
+                  offset: Offset(
+                    10.0, // horizontal, move right 10
+                    10.0, // vertical, move down 10
+                  ),
+                )
+              ],
+              color: Colors.redAccent,
+            ),
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
