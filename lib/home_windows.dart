@@ -16,14 +16,43 @@ class _HomeWindowsState extends State<HomeWindows> {
     Widget logo() => Expanded(
           flex: 3,
           child: Container(
-            color: Colors.green[50],
+            alignment: Alignment.center,
+            child: Image.asset('images/default_avatar.png'),
           ),
         );
 
     Widget buttonArea() => Expanded(
           flex: 2,
-          child: Container(
-            color: Colors.green[50],
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 50,
+                width: 200,
+                child: new RaisedButton(
+                    color: Colors.teal[200],
+                    child: new Text(
+                      'Registar',
+                      style: TextStyle(color: Colors.teal[800], fontSize: 25),
+                    ),
+                    onPressed: () {},
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(20.0),
+                        side: BorderSide(color: Colors.transparent))),
+              ),
+              SizedBox(
+                height: 80,
+                width: 200,
+                child: FlatButton(
+                  color: Colors.transparent,
+                  child: Text('Login',
+                      style: TextStyle(
+                          color: Colors.teal[400],
+                          fontSize: 25,
+                          decoration: TextDecoration.underline)),
+                  onPressed: () {},
+                ),
+              ),
+            ],
           ),
         );
 
