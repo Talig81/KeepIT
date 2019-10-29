@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Taliban\\Desktop\\PEI\\keepit\\KeepIT\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rTW\\values-zh-rTW.xml",
+            "outputFile": "/home/taliban/Documents/KeepIT/keep_it/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Taliban\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\7982cd2675f6a3e10d7156a5c595541b\\res\\values-zh-rTW\\values-zh-rTW.xml",
+                    "source": "/home/taliban/.gradle/caches/transforms-1/files-1.1/core-1.1.0.aar/f9aab9a427fb57fca804a144a7bc222a/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

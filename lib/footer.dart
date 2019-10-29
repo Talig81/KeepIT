@@ -1,13 +1,22 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:keep_it/home_controller.dart';
 
 class Footer extends StatelessWidget {
+  final HomeControllerState controllerState;
+
+  Footer({
+    @required this.controllerState,
+  });
+
   @override
   Widget build(BuildContext context) {
     return footerContainer();
   }
 
   Widget footerContainer() => Container(
-      height: 100,
+      height: 80,
       child: Column(
         children: <Widget>[
           Expanded(
@@ -33,7 +42,9 @@ class Footer extends StatelessWidget {
                     color: Colors.teal[900],
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  this.controllerState.changeWindow(4);
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(18.0),
                     side: BorderSide(color: Colors.transparent))),
@@ -51,7 +62,9 @@ class Footer extends StatelessWidget {
                   ),
                 ),
                 color: Colors.teal[100],
-                onPressed: () {},
+                onPressed: () {
+                  this.controllerState.changeWindow(5);
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(18.0),
                     side: BorderSide(color: Colors.transparent))),
@@ -59,14 +72,3 @@ class Footer extends StatelessWidget {
         ],
       );
 }
-
-//       child: Row(
-//         children: <Widget>[
-//           footerButtons(),
-//           footerLanguage(),
-//         ],
-//       ),
-//     );
-
-// Widget footerButtons() => Row();
-// Widget footerLanguage() => Row();

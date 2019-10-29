@@ -8,22 +8,30 @@ class HomeController extends StatefulWidget {
     @required this.windowChooser,
   });
   @override
-  _HomeControllerState createState() => _HomeControllerState();
+  HomeControllerState createState() => HomeControllerState();
 }
 
-class _HomeControllerState extends State<HomeController> {
+class HomeControllerState extends State<HomeController> {
+  int auxWindow = 1;
+  
   @override
   void initState() {
     super.initState();
   }
 
+
+  void changeWindow(int cenas){
+    this.setState((){
+      this.auxWindow = cenas;
+    });
+    
+  }
   @override
   Widget build(BuildContext context) {
-    int auxWindow = widget.windowChooser;
     return Column(
         children: <Widget>[
-          HomeWindows(chooseWindow: auxWindow,),
-          Footer(),
+          HomeWindows(chooseWindow: auxWindow, myState: this,),
+          Footer(controllerState: this,),
         ],
     );
   }

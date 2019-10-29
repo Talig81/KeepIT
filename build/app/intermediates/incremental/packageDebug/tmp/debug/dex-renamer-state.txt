@@ -1,4 +1,4 @@
-#Tue Oct 29 17:08:52 GMT 2019
-base.0=C\:\\Users\\Taliban\\Desktop\\PEI\\keepit\\KeepIT\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+#Tue Oct 29 23:24:15 WET 2019
+base.0=/home/taliban/Documents/KeepIT/keep_it/build/app/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
