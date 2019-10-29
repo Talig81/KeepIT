@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class Login_screen extends StatelessWidget{
+class LoginScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
+    return loginButtonArea();
   }
 }
 
-
-Widget buttonArea() => Expanded(
+Widget loginButtonArea() => Expanded(
           flex: 2,
           child: Container(
             alignment: Alignment.topCenter,
