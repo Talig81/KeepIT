@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class Dashboard extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _DashboardState createState() => _DashboardState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     super.initState();
@@ -13,22 +13,22 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return homeScaffold();
+    return dashScaffold();
   }
 
-  Widget homeScaffold() => Scaffold(
-        appBar: homeAppbar(),
+  Widget dashScaffold() => Scaffold(
+        appBar: dashAppbar(),
         body: new Container(),
       );
 
-  Widget homeAppbar() => AppBar(
+  Widget dashAppbar() => AppBar(
         backgroundColor: Colors.green[300],
         title: new Center(
-          child: homeText(),
+          child: dashText(),
         ),
       );
 
-  Widget homeText() => new Text(
+  Widget dashText() => new Text(
         "Keep IT",
         textAlign: TextAlign.center,
         style: new TextStyle(

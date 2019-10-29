@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class LoginWindows extends StatefulWidget {
+class HomeWindows extends StatefulWidget {
   @override
-  _LoginWindowsState createState() => _LoginWindowsState();
+  _HomeWindowsState createState() => _HomeWindowsState();
 }
 
-class _LoginWindowsState extends State<LoginWindows> {
+class _HomeWindowsState extends State<HomeWindows> {
   @override
   void initState() {
     super.initState();
@@ -13,8 +13,27 @@ class _LoginWindowsState extends State<LoginWindows> {
 
   @override
   Widget build(BuildContext context) {
+    Widget logo() => Expanded(
+          flex: 3,
+          child: Container(
+            color: Colors.green[50],
+          ),
+        );
+
+    Widget buttonArea() => Expanded(
+          flex: 2,
+          child: Container(
+            color: Colors.green[50],
+          ),
+        );
+
     return Expanded(
-      child: Column(),
+      child: Column(
+        children: <Widget>[
+          logo(),
+          buttonArea(),
+        ],
+      ),
     );
   }
 }

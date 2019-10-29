@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
-import './login_controller.dart';
+import './home_controller.dart';
 
-void loginScreen() => runApp(new LoginScreen());
+void homeScreen() => runApp(new HomeScreen());
 
-class LoginScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return loginScaffold();
+    return homeScaffold();
   }
 
-  Widget loginScaffold() => Scaffold(
-        appBar: loginAppbar(),
-        body: LoginController(),
+  Widget homeScaffold() => Scaffold(
+        appBar: homeAppbar(),
+        body: Container(child: HomeController(), color: Colors.green[50]),
       );
 
-  Widget loginAppbar() => AppBar(
-        backgroundColor: Colors.green[300],
-        title: new Center(
-          child: loginText(),
+  Widget homeAppbar() => AppBar(
+        backgroundColor: Colors.teal[400],
+        title: Text(
+          'Don\'t throw it, Keep it.',
+          style: homeTextStyle(),
         ),
       );
 
-  Widget loginText() => new Text(
+  Widget homeText() => new Text(
         "Keep IT",
         textAlign: TextAlign.center,
-        style: loginTextStyle(),
+        style: homeTextStyle(),
       );
 
-  TextStyle loginTextStyle() => TextStyle(
+  TextStyle homeTextStyle() => TextStyle(
+      color: Colors.white,
         fontFamily: 'RobotoMono',
-        fontSize: 45,
+        fontSize: 25,
         wordSpacing: 7,
         fontWeight: FontWeight.bold,
         shadows: <Shadow>[

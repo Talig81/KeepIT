@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import './login_windows.dart';
+import './home_windows.dart';
 import './footer.dart';
 
-class LoginController extends StatefulWidget {
+class HomeController extends StatefulWidget {
   @override
-  _LoginControllerState createState() => _LoginControllerState();
+  _HomeControllerState createState() => _HomeControllerState();
 }
 
-class _LoginControllerState extends State<LoginController> {
+class _HomeControllerState extends State<HomeController> {
   @override
   void initState() {
     super.initState();
@@ -15,13 +15,11 @@ class _LoginControllerState extends State<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
+    return Column(
         children: <Widget>[
-          LoginWindows(),
+          HomeWindows(),
           Footer(),
         ],
-      ),
     );
   }
 }
