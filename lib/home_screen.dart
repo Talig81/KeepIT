@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
       color: Colors.white,
         fontFamily: 'RobotoMono',
         fontSize: 25,
-        wordSpacing: 7,
+        wordSpacing: 3,
         fontWeight: FontWeight.bold,
         shadows: <Shadow>[
           Shadow(

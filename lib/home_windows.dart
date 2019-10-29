@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:keep_it/windows_manager.dart';
 import './home_controller.dart';
+
+
 
 class HomeWindows extends StatefulWidget {
   final int chooseWindow;
@@ -61,8 +64,7 @@ class _HomeWindowsState extends State<HomeWindows> {
         return Expanded(
           child: Container(
             child: Text("asdfasdfasdfasdf"),
-          ),
-        );
-    }
+          ));
   }
+}
 }
