@@ -3,6 +3,10 @@ import './home_windows.dart';
 import './footer.dart';
 
 class HomeController extends StatefulWidget {
+  final int windowChooser;
+  HomeController({
+    @required this.windowChooser,
+  });
   @override
   _HomeControllerState createState() => _HomeControllerState();
 }
@@ -15,9 +19,10 @@ class _HomeControllerState extends State<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    int auxWindow = widget.windowChooser;
     return Column(
         children: <Widget>[
-          HomeWindows(),
+          HomeWindows(chooseWindow: auxWindow,),
           Footer(),
         ],
     );

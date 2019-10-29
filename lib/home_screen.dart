@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget homeScaffold() => Scaffold(
         appBar: homeAppbar(),
-        body: Container(child: HomeController(), color: Colors.green[50]),
+        body: Container(child: HomeController(windowChooser: 1,), color: Colors.green[50]),
       );
 
   Widget homeAppbar() => AppBar(

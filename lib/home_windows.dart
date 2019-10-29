@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:keep_it/windows_manager.dart';
 
 class HomeWindows extends StatefulWidget {
+  final int chooseWindow;
+  HomeWindows({
+    @required this.chooseWindow,
+  });
+
   @override
   _HomeWindowsState createState() => _HomeWindowsState();
 }
@@ -13,27 +19,12 @@ class _HomeWindowsState extends State<HomeWindows> {
 
   @override
   Widget build(BuildContext context) {
-    Widget logo() => Expanded(
-          flex: 3,
-          child: Container(
-            color: Colors.green[50],
-          ),
-        );
-
-    Widget buttonArea() => Expanded(
-          flex: 2,
-          child: Container(
-            color: Colors.green[50],
-          ),
-        );
-
+    int cenas = widget.chooseWindow;
     return Expanded(
-      child: Column(
-        children: <Widget>[
-          logo(),
-          buttonArea(),
-        ],
-      ),
+      child: WindowsManager(chosenWindow: 2),
     );
   }
+
 }
+
+
