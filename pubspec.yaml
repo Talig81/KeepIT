@@ -45,6 +45,9 @@ flutter:
   assets:
     - images/default_avatar.png
     - images/background_logo.png
+    - images/mascote_vector.png
+    - images/portugal.png
+    - images/england.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -53,6 +53,7 @@ class _WindowsManagerState extends State<WindowsManager> {
 
   Widget registerScreen() => Center(
         child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           color: Colors.grey[300],
           margin: new EdgeInsets.symmetric(horizontal: 40.0, vertical: 40),
           child: new Column(
@@ -66,60 +67,56 @@ class _WindowsManagerState extends State<WindowsManager> {
   Widget suporteScreen() => Container();
   Widget aboutScreen() => Container();
 
-  Widget inputArea() => Expanded(
-        flex: 2,
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              new TextField(
-                decoration: new InputDecoration(labelText: 'Email'),
-                //onChanged: TODO: ver se é isto, se for, meter a tirar o footer quando se escreve nos campos
-              ),
-              new TextField(
-                  decoration: new InputDecoration(labelText: 'Password'),
-                  obscureText: true),
-              SizedBox(height: 30),
-              Container(
-                width: 200,
-                child: new RaisedButton(
-                  color: Colors.teal[200],
-                  child: new Text(
-                    'Login',
-                    style: TextStyle(color: Colors.teal[800]),
-                  ),
-                  onPressed: () {
-                    this.setState((){
-                      this.changeWindow(1);
-                    });
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.transparent),
-                  ),
+  Widget inputArea() => Center(
+        child: Column(
+          children: <Widget>[
+            new TextField(
+              decoration: new InputDecoration(labelText: 'Email'),
+              //onChanged: TODO: ver se é isto, se for, meter a tirar o footer quando se escreve nos campos
+            ),
+            new TextField(
+                decoration: new InputDecoration(labelText: 'Password'),
+                obscureText: true),
+            SizedBox(height: 30),
+            Container(
+              width: 200,
+              child: new RaisedButton(
+                color: Colors.teal[200],
+                child: new Text(
+                  'Login',
+                  style: TextStyle(color: Colors.teal[800]),
+                ),
+                onPressed: () {
+                  this.setState(() {
+                    this.changeWindow(1);
+                  });
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.transparent),
                 ),
               ),
-              SizedBox(
-                height: 5,
-              ),
-              FlatButton(
-                color: Colors.transparent,
-                child: Text('Não tem conta? Registe-se aqui',
-                    style: TextStyle(
-                        color: Colors.teal[400],
-                        decoration: TextDecoration.underline)),
-                onPressed: () {},
-              )
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            FlatButton(
+              color: Colors.transparent,
+              child: Text('Não tem conta? Registe-se aqui',
+                  style: TextStyle(
+                      color: Colors.teal[400],
+                      decoration: TextDecoration.underline)),
+              onPressed: () {},
+            ),
+          ],
         ),
       );
-  Widget avatar() => Expanded(
-        flex: 1,
-        child: Container(
-          alignment: Alignment.center,
-          child: Image.asset('images/default_avatar.png'),
-        ),
+  Widget avatar() => CircleAvatar(
+        backgroundColor: Colors.amberAccent[200],
+        radius: 70,
+        child: Image.asset('images/mascote_vector.png'),
       );
+
   Widget loginScreen() => Center(
         child: Container(
           alignment: Alignment.center,
