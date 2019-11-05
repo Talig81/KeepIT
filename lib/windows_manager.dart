@@ -14,6 +14,8 @@ class WindowsManager extends StatefulWidget {
 
 class _WindowsManagerState extends State<WindowsManager> {
   int loginRegister = 0;
+  Widget window;
+
   @override
   void initState() {
     super.initState();
@@ -36,112 +38,14 @@ class _WindowsManagerState extends State<WindowsManager> {
       case 1:
         return initialScreen();
         break;
-      case 2:
-        return loginScreen();
-        break;
       case 3:
-        return registerScreen();
-        break;
-      case 4:
-        return suporteScreen();
-        break;
-      case 5:
-        return aboutScreen();
+        return RegisterScreen();
         break;
       default:
         return Container();
     }
   }
-
-  Widget registerScreen() => Center(
-        child: Container(
-          color: Colors.green[50],
-          margin: new EdgeInsets.symmetric(horizontal: 40.0, vertical: 40),
-          child: new Column(
-            children: <Widget>[
-              avatar(),
-              inputArea(),
-            ],
-          ),
-        ),
-      );
-
-//----------------------------------SUPORTE------------------------------------------------------
-
-  Widget suporteScreen() => Center();
-
-  //---------------------------------------------------------------------------------------------
-
-  Widget aboutScreen() => Center();
-
-  Widget inputArea() => Expanded(
-        flex: 2,
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              new TextField(
-                decoration: new InputDecoration(labelText: 'Email'),
-                //onChanged: TODO: ver se é isto, se for, meter a tirar o footer quando se escreve nos campos
-              ),
-              new TextField(
-                  decoration: new InputDecoration(labelText: 'Password'),
-                  obscureText: true),
-              SizedBox(height: 30),
-              Container(
-                width: 200,
-                child: new RaisedButton(
-                  color: Colors.teal[200],
-                  child: new Text(
-                    'Login',
-                    style: TextStyle(color: Colors.teal[800]),
-                  ),
-                  onPressed: () {
-                    this.setState(() {
-                      this.changeWindow(1);
-                    });
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.transparent),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              FlatButton(
-                color: Colors.transparent,
-                child: Text('Não tem conta? Registe-se aqui',
-                    style: TextStyle(
-                        color: Colors.teal[400],
-                        decoration: TextDecoration.underline)),
-                onPressed: () {},
-              )
-            ],
-          ),
-        ),
-      );
-  Widget avatar() => Expanded(
-        flex: 1,
-        child: Container(
-          alignment: Alignment.center,
-          child: Image.asset('images/default_avatar.png'),
-        ),
-      );
-  Widget loginScreen() => Center(
-        child: Container(
-          alignment: Alignment.center,
-          color: Colors.amberAccent[200],
-          height: 200,
-          width: 200,
-          child: Column(
-            children: <Widget>[
-              Container(child: Text("ola")),
-              Container(child: Text("ole")),
-            ],
-          ),
-        ),
-      );
+ 
 
   Widget initialScreen() => Column(
         children: <Widget>[
@@ -151,7 +55,7 @@ class _WindowsManagerState extends State<WindowsManager> {
           ),
           Expanded(
             flex: 1,
-            child: buttonArea(),
+            child: window,
           ),
         ],
       );
@@ -191,6 +95,9 @@ class _WindowsManagerState extends State<WindowsManager> {
             borderRadius: new BorderRadius.circular(15.0),
           ),
           onPressed: () {
+            setState(() {
+              window = RegisterScreen();
+            });
           }, // make state changes in a setState
         ),
       );
