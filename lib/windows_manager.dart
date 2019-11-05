@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './register_screen.dart';
+
 class WindowsManager extends StatefulWidget {
   final int chosenWindow;
   WindowsManager({
@@ -53,7 +55,7 @@ class _WindowsManagerState extends State<WindowsManager> {
 
   Widget registerScreen() => Center(
         child: Container(
-          color: Colors.grey[300],
+          color: Colors.green[50],
           margin: new EdgeInsets.symmetric(horizontal: 40.0, vertical: 40),
           child: new Column(
             children: <Widget>[
@@ -63,8 +65,14 @@ class _WindowsManagerState extends State<WindowsManager> {
           ),
         ),
       );
-  Widget suporteScreen() => Container();
-  Widget aboutScreen() => Container();
+
+//----------------------------------SUPORTE------------------------------------------------------
+
+  Widget suporteScreen() => Center();
+
+  //---------------------------------------------------------------------------------------------
+
+  Widget aboutScreen() => Center();
 
   Widget inputArea() => Expanded(
         flex: 2,
@@ -88,7 +96,7 @@ class _WindowsManagerState extends State<WindowsManager> {
                     style: TextStyle(color: Colors.teal[800]),
                   ),
                   onPressed: () {
-                    this.setState((){
+                    this.setState(() {
                       this.changeWindow(1);
                     });
                   },
@@ -169,10 +177,11 @@ class _WindowsManagerState extends State<WindowsManager> {
         minWidth: 160,
         height: 45.0,
         child: new RaisedButton(
-          color: Colors.green[300],
+          color: Colors.teal[300],
           child: new Text(
             'Registar',
             style: TextStyle(
+              color: Colors.teal[800],
               fontSize: 23,
               fontWeight: FontWeight.bold,
             ),
@@ -182,9 +191,6 @@ class _WindowsManagerState extends State<WindowsManager> {
             borderRadius: new BorderRadius.circular(15.0),
           ),
           onPressed: () {
-            this.setState(() {
-              this.changeWindow(3);
-            });
           }, // make state changes in a setState
         ),
       );
@@ -193,11 +199,11 @@ class _WindowsManagerState extends State<WindowsManager> {
         margin: EdgeInsetsDirectional.only(top: 25),
         child: InkWell(
           child: new Text(
-            'Entrar',
+            'Iniciar sessão',
             style: TextStyle(
               fontSize: 13,
               decoration: TextDecoration.underline,
-              color: Colors.blueAccent,
+              color: Colors.teal[400],
               fontWeight: FontWeight.bold,
               letterSpacing: 1,
             ),

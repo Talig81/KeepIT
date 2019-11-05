@@ -31,7 +31,7 @@ class HomeControllerState extends State<HomeController> {
     return Column(
         children: <Widget>[
           HomeWindows(chooseWindow: auxWindow, myState: this,),
-          Footer(controllerState: this,),
+          Footer(),
         ],
     );
   }

@@ -7,9 +7,7 @@ class RegisterScreen extends StatelessWidget{
     return registerButtonArea();
   }
 
-Widget registerButtonArea() => Expanded(
-          flex: 2,
-          child: Container(
+Widget registerButtonArea() => Container(
             alignment: Alignment.topCenter,
             width: 250,
             color: Colors.green[50],
@@ -51,7 +49,6 @@ Widget registerButtonArea() => Expanded(
                 )
               ],
             ),
-          ),
-        );
+          );
 
 }
