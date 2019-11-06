@@ -16,7 +16,6 @@ class _HomeControllerState extends State<HomeController> {
 
   Widget build(BuildContext context){
     return MaterialApp(
-      title: 'Rotinhas',
       initialRoute: '/',
       routes: {
         '/' : (context) => InitialScreen(),

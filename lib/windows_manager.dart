@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './register_screen.dart';
+
 
 class WindowsManager extends StatefulWidget {
   final int chosenWindow;
@@ -27,10 +27,7 @@ class _WindowsManagerState extends State<WindowsManager> {
 
   @override
   Widget build(BuildContext context) {
-    if (loginRegister == 0)
-      return chooseWidget(widget.chosenWindow);
-    else
-      return chooseWidget(loginRegister);
+      return Container();
   }
 
   Widget chooseWidget(int number) {
@@ -39,7 +36,7 @@ class _WindowsManagerState extends State<WindowsManager> {
         return initialScreen();
         break;
       case 3:
-        return RegisterScreen();
+        return Container();
         break;
       default:
         return Container();
@@ -96,7 +93,7 @@ class _WindowsManagerState extends State<WindowsManager> {
           ),
           onPressed: () {
             setState(() {
-              window = RegisterScreen();
+              window = Container();
             });
           }, // make state changes in a setState
         ),
