@@ -8,11 +8,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green[50],
+      color: Colors.green[100],
       child: Column(
         children: <Widget>[
           Expanded(
-            flex: 3,
+            flex: 8,
             child: HomeController(),
           ),
           Expanded(
