@@ -1,53 +1,95 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class LoginScreen extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return Container();
-  }
+class LoginScreen extends StatefulWidget {
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-Widget loginButtonArea() => Container(
-            alignment: Alignment.topCenter,
-            width: 250,
-            color: Colors.green[50],
-            child: Column(
-              children: <Widget>[
-                new TextField(
-                  decoration: new InputDecoration(labelText: 'Email'),
-                  //onChanged: TODO: ver se é isto, se for, meter a tirar o footer quando se escreve nos campos
-                ),
-                new TextField(
-                    decoration: new InputDecoration(labelText: 'Password'),
-                    obscureText: true),
-                SizedBox(height: 30),
-                Container(
-                  width: 200,
-                  child: new RaisedButton(
-                    color: Colors.teal[200],
-                    child: new Text(
-                      'Login',
-                      style: TextStyle(color: Colors.teal[800]),
-                    ),
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.transparent),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                FlatButton(
-                  color: Colors.transparent,
-                  child: Text('Não tem conta? Registe-se aqui',
-                      style: TextStyle(
-                          color: Colors.teal[400],
-                          decoration: TextDecoration.underline)),
-                  onPressed: () {},
-                )
-              ],
-            ),
-          );
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // Center e Container que definem a caixa do login
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 60, horizontal: 45),
+        child: loginButtonArea(),
+      ),
+    );
+  }
+
+  // Scaffold e Coluna que chama os widgets. O padding e necessario senao fica tudo encostado a caixa
+  // o resizetoavoidbottominset faz com que o teclado fique por cima das widgets. mas nao e a melhor approach porque pode ficar por cima do password field.
+  Widget loginButtonArea() => new Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          color: Colors.blueGrey[100],
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          child: Column(
+            children: <Widget>[
+              avatar(),
+              emailField(),
+              passwordField(),
+              loginButton(),
+            ],
+          ),
+        ),
+      );
+
+  // --------------------- WIDGETS A SEREM USADOS --------------
+  
+  // avatar. a margem e para nao ficar com os text fields tao em cima
+  Widget avatar() => Container(
+        margin: EdgeInsets.symmetric(vertical: 20),
+        child: CircleAvatar(
+          radius: 75,
+          backgroundImage: AssetImage('images/mascote.png'),
+        ),
+      );
+
+  // email field
+  TextFormField emailField() => new TextFormField(
+        decoration:
+            new InputDecoration(icon: Icon(Icons.email), labelText: 'Email'),
+        onSaved: (String value) {},
+        validator: (String value) {
+          return value.contains('@') ? 'Do not use the @ char.' : null;
+        },
+      );
+
+  // password field
+  TextFormField passwordField() => new TextFormField(
+        decoration: new InputDecoration(
+            icon: Icon(Icons.vpn_key), labelText: 'Password'),
+        onSaved: (String value) {
+          // This optional block of code can be used to run
+          // code when the user saves the form.
+        },
+        validator: (String value) {
+          return value.contains('@') ? 'Do not use the @ char.' : null;
+        },
+      );
+
+  // butao login
+  Widget loginButton() => Container(
+        margin: EdgeInsets.symmetric(vertical: 45),
+        child: RaisedButton(
+          color: Colors.teal[200],
+          child: new Text(
+            'Login',
+            style: TextStyle(color: Colors.teal[800]),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/');
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+            side: BorderSide(color: Colors.transparent),
+          ),
+        ),
+      );
+}
