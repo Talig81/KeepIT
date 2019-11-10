@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Expanded(
-            flex: 3,
+            flex: 1,
             child: HomeController(),
           ),
           Expanded(
