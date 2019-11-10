@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatefulWidget {
+class Dashboards extends StatefulWidget {
   @override
   _DashboardState createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends State<Dashboards> {
   @override
   void initState() {
     super.initState();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
+  
 class RegisterScreen extends StatelessWidget {
   // Se aparecer alguma vez o erro de "no material widget found" é porque aplicou se text fields sem scaffold ou material app antes.
   //

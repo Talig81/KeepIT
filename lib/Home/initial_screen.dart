@@ -61,8 +61,7 @@ class InitialScreen extends StatelessWidget {
                 text: 'Já tem conta? ',
                 style: new TextStyle(
                     color: Colors.teal[900],
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
+                    fontSize: 15,),
               ),
               new TextSpan(
                 text: 'Entrar aqui',

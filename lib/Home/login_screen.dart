@@ -84,8 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(color: Colors.teal[800], fontSize: 20),
           ),
           onPressed: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, '/');
+            Navigator.popAndPushNamed(context, '/dashboard');
           },
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),
