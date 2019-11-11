@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './drawer_style.dart';
+
 class Dashboard extends StatefulWidget {
   _Dashboard createState() => _Dashboard();
 }
@@ -13,44 +15,51 @@ class _Dashboard extends State<Dashboard> {
   }
 
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: swipe(context),
+    return Scaffold(
+      backgroundColor: Colors.green[100],
+      appBar: AppBar(
+        title: Text(
+          'KeepIT',
+          style: new TextStyle(
+            fontFamily: 'RobotoMono',
+            fontSize: 30,
+            wordSpacing: 7,
+            fontWeight: FontWeight.bold,
+            shadows: <Shadow>[
+              Shadow(
+                offset: Offset(5.0, 5.0),
+                blurRadius: 5.0,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.teal[400],
       ),
+      drawer: DrawerStyle(),
+      body: receipts(context),
     );
   }
 
-  Widget swipe(BuildContext context) => new Scaffold(
-        backgroundColor: Colors.green[100],
-        appBar: AppBar(
-          backgroundColor: Colors.teal[400],
-        ),
-        drawer: Theme(
-          data: Theme.of(context).copyWith(
-            primaryColor: Colors.teal[600], //é aqui que se muda a cor do header !!
-            canvasColor: Colors.teal[600],
-          ),
-          child: Drawer(
-            child: ListView(
-              children: <Widget>[
-                DrawerHeader(
-                  margin: EdgeInsets.zero,
-                  padding: EdgeInsets.zero,
-                  child: UserAccountsDrawerHeader(
-                    accountName: Text('TaliGay'),
-                    accountEmail: Text('taliGayisGay@buégay.com'),
-                    currentAccountPicture: CircleAvatar(
-                      radius: 1,
-                      backgroundColor: Colors.white,
-                      child: Text(
-                        "T",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+  Widget receipts(BuildContext context) => new Container(
+        padding: EdgeInsets.symmetric(vertical: 15,horizontal: 50),
+        constraints: BoxConstraints(maxWidth: 450, maxHeight: 300),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.blueGrey[300],
+              offset: Offset(20, 25.0),
+              blurRadius: 80,
+              spreadRadius: -25
             ),
+          ],
+        ),
+        child: Card(
+          child: ListView(
+            children: <Widget>[
+              Text('Ola1'),
+              Text('Ola2'),
+            ],
           ),
         ),
       );

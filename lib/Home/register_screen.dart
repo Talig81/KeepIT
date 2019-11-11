@@ -16,7 +16,6 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  //a cor do container e aqui
   Widget registerButtonArea(BuildContext context) => new Scaffold(
         backgroundColor: Colors.green[100],
         body: Container(
