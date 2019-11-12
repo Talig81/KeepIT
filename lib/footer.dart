@@ -13,6 +13,7 @@ class Footer extends StatelessWidget {
   }
 
   Widget footerContainer(BuildContext context) => Container(
+    color: Colors.teal[400],
       height: 80,
       child: Column(
         children: <Widget>[
@@ -32,7 +33,7 @@ class Footer extends StatelessWidget {
           Opacity(
             opacity: 0.5,
             child: RaisedButton(
-                color: Colors.teal[100],
+                color: Colors.teal[50],
                 child: Text(
                   'Suporte',
                   style: TextStyle(
@@ -57,7 +58,7 @@ class Footer extends StatelessWidget {
                     color: Colors.teal[900],
                   ),
                 ),
-                color: Colors.teal[100],
+                color: Colors.teal[50],
                 onPressed: () {
                   MaterialPageRoute(builder: (context) => HomeController());
                 },
