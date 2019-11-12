@@ -23,7 +23,7 @@ class _Dashboard extends State<Dashboard> {
           style: new TextStyle(
             fontFamily: 'RobotoMono',
             fontSize: 30,
-            wordSpacing: 7,
+            wordSpacing: 15,
             fontWeight: FontWeight.bold,
             shadows: <Shadow>[
               Shadow(
@@ -37,22 +37,48 @@ class _Dashboard extends State<Dashboard> {
         backgroundColor: Colors.teal[400],
       ),
       drawer: DrawerStyle(),
-      body: receipts(context),
+      body: Column(
+        children: <Widget>[
+          categories(context),
+          receipts(context),
+        ],
+      ),
     );
   }
+
+  Widget categories(BuildContext context) => new Row(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(top:5),
+                  width: 20,
+                  height: 20,
+                  child: FloatingActionButton(
+                    mini: true,
+                    backgroundColor: Colors.blue,
+                    elevation: 0,
+                    onPressed: () => {},
+                  ),
+                ),
+                Text('Categoria')
+              ],
+            ),
+          ],
+        );
 
   Widget receipts(BuildContext context) => new Container(
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
         constraints: BoxConstraints(maxWidth: 450, maxHeight: 300),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.blueGrey[800],
-                offset: Offset(12, 25.0),
-                blurRadius: 8,
-                spreadRadius: -35),
-          ],
-        ),
+        // decoration: BoxDecoration(
+        //   boxShadow: [
+        //     BoxShadow(
+        //         color: Colors.blueGrey[800],
+        //         offset: Offset(12, 25.0),
+        //         blurRadius: 8,
+        //         spreadRadius: -35),
+        //   ],
+        // ),
         child: Card(
           child: ListView(
             children: <Widget>[
