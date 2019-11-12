@@ -47,38 +47,29 @@ class _Dashboard extends State<Dashboard> {
   }
 
   Widget categories(BuildContext context) => new Row(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(top:5),
-                  width: 20,
-                  height: 20,
-                  child: FloatingActionButton(
-                    mini: true,
-                    backgroundColor: Colors.blue,
-                    elevation: 0,
-                    onPressed: () => {},
-                  ),
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: 5),
+                width: 20,
+                height: 20,
+                child: FloatingActionButton(
+                  mini: true,
+                  backgroundColor: Colors.blue,
+                  elevation: 0,
+                  onPressed: () => {},
                 ),
-                Text('Categoria')
-              ],
-            ),
-          ],
-        );
+              ),
+              Text('Categoria 1')
+            ],
+          ),
+        ],
+      );
 
   Widget receipts(BuildContext context) => new Container(
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
         constraints: BoxConstraints(maxWidth: 450, maxHeight: 300),
-        // decoration: BoxDecoration(
-        //   boxShadow: [
-        //     BoxShadow(
-        //         color: Colors.blueGrey[800],
-        //         offset: Offset(12, 25.0),
-        //         blurRadius: 8,
-        //         spreadRadius: -35),
-        //   ],
-        // ),
         child: Card(
           child: ListView(
             children: <Widget>[
