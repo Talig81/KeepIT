@@ -42,16 +42,15 @@ class _Dashboard extends State<Dashboard> {
   }
 
   Widget receipts(BuildContext context) => new Container(
-        padding: EdgeInsets.symmetric(vertical: 15,horizontal: 50),
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
         constraints: BoxConstraints(maxWidth: 450, maxHeight: 300),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.blueGrey[300],
-              offset: Offset(20, 25.0),
-              blurRadius: 80,
-              spreadRadius: -25
-            ),
+                color: Colors.blueGrey[800],
+                offset: Offset(12, 25.0),
+                blurRadius: 8,
+                spreadRadius: -35),
           ],
         ),
         child: Card(
