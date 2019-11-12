@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' show Response, get;
+import 'package:keep_it/user_client.dart';
+
 
 class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  UserAgentClient userClient = new UserAgentClient();
+  TextEditingController emailC = new TextEditingController();
+  TextEditingController passwordC = new TextEditingController();
+  
   @override
   void initState() {
     super.initState();
   }
+
+
+  
 
   // Center e Container que definem a caixa do login
   Widget build(BuildContext context) {
@@ -40,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
   // --------------------- WIDGETS A SEREM USADOS --------------
-  
+
   // avatar. a margem e para nao ficar com os text fields tao em cima
   Widget avatar() => Container(
         margin: EdgeInsets.symmetric(vertical: 20),
@@ -52,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // email field
   TextFormField emailField() => new TextFormField(
+        controller: emailC,
         decoration:
             new InputDecoration(icon: Icon(Icons.email), labelText: 'Email'),
         onSaved: (String value) {},
@@ -62,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // password field
   TextFormField passwordField() => new TextFormField(
+        controller: passwordC,
         decoration: new InputDecoration(
             icon: Icon(Icons.vpn_key), labelText: 'Password'),
         onSaved: (String value) {
@@ -83,8 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(color: Colors.teal[800]),
           ),
           onPressed: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, '/');
+            
           },
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),
