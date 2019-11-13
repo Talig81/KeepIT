@@ -95,7 +95,8 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(color: Colors.teal[800]),
           ),
           onPressed: () {
-            
+            //UserAgentClient().getLogin(emailC.text, passwordC.text);
+            UserAgentClient().addFatura();
           },
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),
