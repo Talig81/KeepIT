@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Dashboard/main_dash.dart';
 
 import './register_screen.dart';
 import './login_screen.dart';
@@ -23,6 +24,7 @@ class _HomeControllerState extends State<HomeController> {
         '/' : (context) => InitialScreen(),
         '/register' : (context) => RegisterScreen(),
         '/login' : (context) => LoginScreen(),
+        '/dashboard' : (context) => Dashboard(),
       },
     );
   }

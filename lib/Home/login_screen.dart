@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget loginButtonArea() => new Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          color: Colors.blueGrey[100],
+          color: Colors.green[100],
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: Column(
             children: <Widget>[
@@ -87,16 +87,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // butao login
   Widget loginButton() => Container(
+    width: 200,
         margin: EdgeInsets.symmetric(vertical: 45),
         child: RaisedButton(
           color: Colors.teal[200],
           child: new Text(
             'Login',
-            style: TextStyle(color: Colors.teal[800]),
+            style: TextStyle(color: Colors.teal[800], fontSize: 20),
           ),
           onPressed: () {
-            //UserAgentClient().getLogin(emailC.text, passwordC.text);
-            UserAgentClient().addFatura();
+            Navigator.popAndPushNamed(context, '/dashboard');
           },
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),

@@ -20,30 +20,31 @@ class InitialScreen extends StatelessWidget {
 
   Widget logo() => Center(
         child: Container(
+          padding: EdgeInsets.only(top: 120, bottom: 80),
           alignment: Alignment.center,
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 60, horizontal: 60),
-            child: Image.asset('images/mascote.png'),
+          child: SizedBox(
+            width: 350,
+            child: Image.asset(
+              'images/mascote.png',
+            ),
           ),
         ),
       );
 
   Widget buttonRegister(BuildContext context) => ButtonTheme(
-        minWidth: 160,
+        minWidth: 200,
         height: 45.0,
         child: new RaisedButton(
-          color: Colors.teal[300],
+          color: Colors.teal[200],
           child: new Text(
             'Registar',
             style: TextStyle(
               color: Colors.teal[800],
               fontSize: 23,
-              fontWeight: FontWeight.bold,
             ),
           ),
-          textColor: Colors.white,
           shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(15.0),
+            borderRadius: new BorderRadius.circular(20.0),
           ),
           onPressed: () {
             Navigator.popAndPushNamed(context, '/register');
@@ -52,21 +53,21 @@ class InitialScreen extends StatelessWidget {
       );
 
   Widget textLogin(BuildContext context) => Container(
-        margin: EdgeInsetsDirectional.only(bottom: 15),
+        margin: EdgeInsets.only(bottom: 150),
         child: new RichText(
           text: new TextSpan(
             children: [
               new TextSpan(
                 text: 'Já tem conta? ',
                 style: new TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
+                    color: Colors.teal[900],
+                    fontSize: 15,),
               ),
               new TextSpan(
                 text: 'Entrar aqui',
                 style: new TextStyle(
-                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                    color: Colors.teal[600],
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
                 recognizer: new TapGestureRecognizer()
