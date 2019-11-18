@@ -19,7 +19,7 @@ class RegisterScreen extends StatelessWidget {
   Widget registerButtonArea(BuildContext context) => new Scaffold(
         backgroundColor: Colors.green[100],
         body: Container(
-          padding: EdgeInsets.symmetric(vertical: 80, horizontal: 15),
+          padding: EdgeInsets.symmetric(vertical: 40, horizontal: 15),
           child: Column(
             children: <Widget>[
               Theme(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:keep_it/Dashboard/main_dash.dart';
+import 'package:keep_it/Home/user.dart';
 
 class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
@@ -40,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
   // --------------------- WIDGETS A SEREM USADOS --------------
-  
+
   // avatar. a margem e para nao ficar com os text fields tao em cima
   Widget avatar() => Container(
         margin: EdgeInsets.symmetric(vertical: 20),
@@ -75,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // butao login
   Widget loginButton() => Container(
-    width: 200,
+        width: 200,
         margin: EdgeInsets.symmetric(vertical: 45),
         child: RaisedButton(
           color: Colors.teal[200],
@@ -84,7 +86,18 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(color: Colors.teal[800], fontSize: 20),
           ),
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/dashboard');
+            Users c = new Users();
+            c.handleSignIn().whenComplete(
+              () {
+                print(c.getName());
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Dashboard(c),
+                  ),
+                );
+              },
+            );
           },
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),

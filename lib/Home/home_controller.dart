@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_it/Home/user.dart';
 import '../Dashboard/main_dash.dart';
 
 import './register_screen.dart';
@@ -10,6 +11,7 @@ class HomeController extends StatefulWidget {
 }
 
 class _HomeControllerState extends State<HomeController> {
+  Users theuser;
   @override
   void initState() {
     super.initState();
@@ -24,8 +26,10 @@ class _HomeControllerState extends State<HomeController> {
         '/' : (context) => InitialScreen(),
         '/register' : (context) => RegisterScreen(),
         '/login' : (context) => LoginScreen(),
-        '/dashboard' : (context) => Dashboard(),
+        
       },
     );
   }
+
+
 }

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:keep_it/Home/user.dart';
 
 import './drawer_style.dart';
 
-class Dashboard extends StatefulWidget {
-  _Dashboard createState() => _Dashboard();
-}
+class Dashboard extends StatelessWidget {
+  final Users c;
 
-//TODO:vai ser necessário acrescentar um widget quando tivermos ligação ao backend para saber quem é o utilizador
+  Dashboard(this.c);
 
-class _Dashboard extends State<Dashboard> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  Widget testFunc(BuildContext context) => new Container(
+    child: RaisedButton(onPressed: (){
+      c.handleSignOut();
+      Navigator.pop(context);
+    },)
+  );
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,32 +35,99 @@ class _Dashboard extends State<Dashboard> {
             ],
           ),
         ),
+        actions: <Widget>[
+          testFunc(context),
+        ],
         backgroundColor: Colors.teal[400],
       ),
       drawer: DrawerStyle(),
-      body: receipts(context),
+      body: new Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: receipts(context),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor:  Colors.teal[400],
+        elevation: 7,
+        items: const <BottomNavigationBarItem>[
+           
+          BottomNavigationBarItem(
+            icon: Icon(Icons.volume_up),
+            title: Text('Pokemon'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            title: Text('Business'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            title: Text('School'),
+
+          ),
+        ],
+      ),
     );
   }
 
-  Widget receipts(BuildContext context) => new Container(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-        constraints: BoxConstraints(maxWidth: 450, maxHeight: 300),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.blueGrey[800],
-                offset: Offset(12, 25.0),
-                blurRadius: 8,
-                spreadRadius: -35),
-          ],
-        ),
-        child: Card(
-          child: ListView(
-            children: <Widget>[
-              Text('Ola1'),
-              Text('Ola2'),
-            ],
+  Widget makeListTile() => new ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        leading: Container(
+          padding: EdgeInsets.only(right: 12.0),
+          decoration: new BoxDecoration(
+              border: new Border(
+                  right: new BorderSide(width: 1.0, color: Colors.white24))),
+          child: Icon(
+            Icons.receipt,
+            color: Colors.white,
+            size: 35,
           ),
         ),
+        title: Text(
+          "Fatura: 1234",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+
+        subtitle: Row(
+          children: <Widget>[
+            Icon(Icons.attach_money, color: Colors.yellowAccent),
+            Text(" 10 paus", style: TextStyle(color: Colors.white))
+          ],
+        ),
+        trailing:
+            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
       );
+
+  Widget receipts(BuildContext context) => new ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return makeCard();
+        },
+      );
+
+  Widget makeCard() => new Card(
+        elevation: 8.0,
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        child: Container(
+          decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+          child: makeListTile(),
+        ),
+      );
+
+  Widget circleImage() {
+    return new Container(
+      width: 100.0,
+      height: 100.0,
+      decoration: new BoxDecoration(
+        shape: BoxShape.circle,
+        image: new DecorationImage(
+          fit: BoxFit.cover,
+          image: new AssetImage('images/mascote.png'),
+        ),
+      ),
+    );
+  }
 }

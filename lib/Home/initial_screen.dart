@@ -20,13 +20,10 @@ class InitialScreen extends StatelessWidget {
 
   Widget logo() => Center(
         child: Container(
-          padding: EdgeInsets.only(top: 120, bottom: 80),
+          padding: EdgeInsets.only(top: 20, bottom: 40),
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 350,
-            child: Image.asset(
-              'images/mascote.png',
-            ),
+          child: Image.asset(
+            'images/mascote.png',
           ),
         ),
       );
@@ -53,15 +50,16 @@ class InitialScreen extends StatelessWidget {
       );
 
   Widget textLogin(BuildContext context) => Container(
-        margin: EdgeInsets.only(bottom: 150),
+        margin: EdgeInsets.only(bottom: 50),
         child: new RichText(
           text: new TextSpan(
             children: [
               new TextSpan(
                 text: 'Já tem conta? ',
                 style: new TextStyle(
-                    color: Colors.teal[900],
-                    fontSize: 15,),
+                  color: Colors.teal[900],
+                  fontSize: 15,
+                ),
               ),
               new TextSpan(
                 text: 'Entrar aqui',
