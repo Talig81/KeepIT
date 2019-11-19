@@ -31,10 +31,6 @@ class HomeScreen extends StatelessWidget {
             flex: 8,
             child: HomeController(),
           ),
-          Expanded(
-            flex: 1,
-            child: Footer(),
-          ),
         ],
       ),
     );

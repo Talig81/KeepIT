@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'Home/home_controller.dart';
 
 class Footer extends StatelessWidget {
 
@@ -19,11 +18,14 @@ class Footer extends StatelessWidget {
         children: <Widget>[
           Expanded(
               flex: 0,
-              child: Divider(
-                color: Colors.blueGrey[300],
-                thickness: 2,
+              child: Container(
+                color: Colors.teal[600],
+                child: Divider(
+                  color: Colors.blueGrey[300],
+                  thickness: 2,
+                ),
               )),
-          footerRow(context),
+          Container(color: Colors.teal[600],child: footerRow(context)),
         ],
       ));
 
@@ -60,7 +62,7 @@ class Footer extends StatelessWidget {
                 ),
                 color: Colors.teal[50],
                 onPressed: () {
-                  MaterialPageRoute(builder: (context) => HomeController());
+                  MaterialPageRoute(builder: (context) => Container()); //HomeController()
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(18.0),

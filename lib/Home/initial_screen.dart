@@ -1,11 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InitialScreen extends StatelessWidget {
   @override
 
+  //TODO: meter responsive no fontSize
+
   // Coluna que contem o logo, o botao registar e o texto de entrar aqui
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(
+      width: 1100.0,
+      height: 1800.0,
+      allowFontScaling: true,
+    )..init(context);
+
     return Container(
       decoration: BoxDecoration(
         // Box decoration takes a gradient
@@ -25,7 +34,6 @@ class InitialScreen extends StatelessWidget {
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           logo(),
           buttonRegister(context),
@@ -39,10 +47,14 @@ class InitialScreen extends StatelessWidget {
 
   Widget logo() => Center(
         child: Container(
-          padding: EdgeInsets.only(top: 120, bottom: 80),
+          padding: EdgeInsets.only(
+            top: ScreenUtil.instance.setWidth(200.0),
+            //bottom: ScreenUtil.instance.setWidth(20),
+          ),
           alignment: Alignment.center,
           child: SizedBox(
-            width: 350,
+            width: ScreenUtil.instance.setWidth(600.0),
+            height: ScreenUtil.instance.setHeight(700),
             child: Image.asset(
               'images/mascote.png',
             ),
@@ -50,29 +62,35 @@ class InitialScreen extends StatelessWidget {
         ),
       );
 
-  Widget buttonRegister(BuildContext context) => ButtonTheme(
-        minWidth: 200,
-        height: 45.0,
-        child: new RaisedButton(
-          color: Colors.teal[100],
-          child: new Text(
-            'Registar',
-            style: TextStyle(
-              color: Colors.teal[800],
-              fontSize: 23,
+  Widget buttonRegister(BuildContext context) => Container(
+        padding: EdgeInsets.only(
+            top: ScreenUtil.instance.setWidth(200.0),
+            bottom: ScreenUtil.instance.setWidth(100),
+          ),
+        child: ButtonTheme(
+          minWidth: ScreenUtil.instance.setWidth(500),
+          height: ScreenUtil.instance.setHeight(80.0),
+          child: new RaisedButton(
+            color: Colors.teal[100],
+            child: new Text(
+              'Registar',
+              style: TextStyle(
+                color: Colors.teal[800],
+                fontSize: 23,
+              ),
             ),
+            shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(20.0),
+            ),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, '/register');
+            },
           ),
-          shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20.0),
-          ),
-          onPressed: () {
-            Navigator.popAndPushNamed(context, '/register');
-          },
         ),
       );
 
   Widget textLogin(BuildContext context) => Container(
-        margin: EdgeInsets.only(bottom: 150),
+        margin: EdgeInsets.only(bottom: ScreenUtil.instance.setWidth(150)),
         child: new RichText(
           text: new TextSpan(
             children: [
