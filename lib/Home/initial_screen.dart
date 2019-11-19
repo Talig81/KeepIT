@@ -6,7 +6,8 @@ class InitialScreen extends StatelessWidget {
   @override
 
   //TODO: meter responsive no fontSize
-
+  //TODO: tentar reciclar o codigo do screenUtil
+  
   // Coluna que contem o logo, o botao registar e o texto de entrar aqui
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(

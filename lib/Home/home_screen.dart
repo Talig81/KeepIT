@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './home_controller.dart';
-import '../footer.dart';
 
 void homeScreen() => runApp(new HomeScreen());
 

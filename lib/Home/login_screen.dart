@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
@@ -11,15 +12,23 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
+  //TODO: ver porque quando mudo width na password muda a width do container 
+
   // Center e Container que definem a caixa do login
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(
+      width: 1100.0,
+      height: 1800.0,
+      allowFontScaling: true,
+    )..init(context);
+
     return loginButtonArea();
   }
 
   // Scaffold e Coluna que chama os widgets. O padding e necessario senao fica tudo encostado a caixa
   // o resizetoavoidbottominset faz com que o teclado fique por cima das widgets. mas nao e a melhor approach porque pode ficar por cima do password field.
   Widget loginButtonArea() => new Scaffold(
-        resizeToAvoidBottomInset: false,
+        //resizeToAvoidBottomInset: false,
         body: Container(
           decoration: BoxDecoration(
             // Box decoration takes a gradient
@@ -38,12 +47,17 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 100),
+          padding: EdgeInsets.symmetric(
+            horizontal: ScreenUtil.instance.setWidth(15),
+            vertical: ScreenUtil.instance.setHeight(100),
+          ),
           child: Column(
             children: <Widget>[
               avatar(),
               emailField(),
-              SizedBox(height: 10),
+              SizedBox(
+                height: ScreenUtil.instance.setHeight(10),
+              ),
               passwordField(),
               loginButton(),
             ],
@@ -55,18 +69,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // avatar. a margem e para nao ficar com os text fields tao em cima
   Widget avatar() => Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        child: CircleAvatar(
-          radius: 75,
-          backgroundImage: AssetImage('images/mascote.png'),
-          backgroundColor: Colors.transparent,
+        width: ScreenUtil.instance.setWidth(600),
+        height: ScreenUtil.instance.setHeight(700),
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(
+          top: ScreenUtil.instance.setWidth(50),
+        ),
+        child: Image.asset(
+          'images/mascote.png',
         ),
       );
 
   // email field
   Container emailField() => Container(
-        width: 400,
-        height: 40,
+        // width: ScreenUtil.instance.setWidth(700),
+        // height: ScreenUtil.instance.setHeight(50),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.teal[800]),
           borderRadius: BorderRadius.all(
@@ -93,6 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // password field
   Container passwordField() => Container(
+        //width: ScreenUtil.instance.setWidth(300),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.teal[800]),
           borderRadius: BorderRadius.all(
@@ -122,11 +140,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // butao login
   Widget loginButton() => Container(
-        padding: EdgeInsets.only(top: 50),
+        padding: EdgeInsets.only(
+          top: ScreenUtil.instance.setWidth(300),
+        ),
         child: Column(
           children: [
             Container(
-              width: 200,
+              width: ScreenUtil.instance.setWidth(400),
               child: RaisedButton(
                 color: Colors.teal[100],
                 child: new Text(
