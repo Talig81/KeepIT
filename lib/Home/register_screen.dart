@@ -1,52 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterScreen extends StatefulWidget {
   // Se aparecer alguma vez o erro de "no material widget found" é porque aplicou se text fields sem scaffold ou material app antes.
   //
   // se calhar e melhor primeiro definir o container e o center e so depois meter o scaffold. o login_screen ta direito
-  _RegisterScreen createState() =>_RegisterScreen();
+  _RegisterScreen createState() => _RegisterScreen();
 }
 
-class _RegisterScreen extends State<RegisterScreen>{
-@override
+class _RegisterScreen extends State<RegisterScreen> {
+  @override
   void initState() {
     super.initState();
   }
 
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(
+      width: 1100.0,
+      height: 1800.0,
+      allowFontScaling: true,
+    )..init(context);
+
     return registerButtonArea();
   }
 
-Widget registerButtonArea() => new Scaffold(
+  Widget registerButtonArea() => new Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
+          width: ScreenUtil.instance.setWidth(1100),
           decoration: BoxDecoration(
-          // Box decoration takes a gradient
-          gradient: LinearGradient(
-            // Where the linear gradient begins and ends
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            // Add one stop for each color. Stops should increase from 0 to 1
-            stops: [0.1, 0.5, 0.7, 0.9],
-            colors: [
-              // Colors are easy thanks to Flutter's Colors class.
-              Colors.teal[100],
-              Colors.teal[200],
-              Colors.teal[300],
-              Colors.teal[600],
-            ],
+            // Box decoration takes a gradient
+            gradient: LinearGradient(
+              // Where the linear gradient begins and ends
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              // Add one stop for each color. Stops should increase from 0 to 1
+              stops: [0.1, 0.5, 0.7, 0.9],
+              colors: [
+                // Colors are easy thanks to Flutter's Colors class.
+                Colors.teal[100],
+                Colors.teal[200],
+                Colors.teal[300],
+                Colors.teal[600],
+              ],
+            ),
           ),
-        ),
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 100),
+          padding: EdgeInsets.only(
+            top: ScreenUtil.instance.setWidth(80),
+          ),
           child: Column(
             children: <Widget>[
               avatar(),
-              SizedBox(height: 10),
+              SizedBox(height: ScreenUtil.instance.setHeight(10)),
               nameField(),
-              SizedBox(height: 10),
+              SizedBox(height: ScreenUtil.instance.setHeight(10)),
               emailField(),
-              SizedBox(height: 10),
+              SizedBox(height: ScreenUtil.instance.setHeight(10)),
               passField(),
               registerButton(),
             ],
@@ -54,18 +64,20 @@ Widget registerButtonArea() => new Scaffold(
         ),
       );
 
- Widget avatar() => Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        child: CircleAvatar(
-          radius: 75,
-          backgroundImage: AssetImage('images/mascote.png'),
-          backgroundColor: Colors.transparent,
+  Widget avatar() => Container(
+        width: ScreenUtil.instance.setWidth(500),
+        height: ScreenUtil.instance.setHeight(600),
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(
+          top: ScreenUtil.instance.setWidth(50),
+        ),
+        child: Image.asset(
+          'images/mascote.png',
         ),
       );
 
   Container nameField() => Container(
-        width: 400,
-        height: 40,
+        width: ScreenUtil.instance.setWidth(900),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.teal[800]),
           borderRadius: BorderRadius.all(
@@ -95,8 +107,7 @@ Widget registerButtonArea() => new Scaffold(
       );
 
   Container emailField() => Container(
-        width: 400,
-        height: 40,
+        width: ScreenUtil.instance.setWidth(900),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.teal[800]),
           borderRadius: BorderRadius.all(
@@ -126,8 +137,7 @@ Widget registerButtonArea() => new Scaffold(
       );
 
   Container passField() => Container(
-        width: 400,
-        height: 40,
+        width: ScreenUtil.instance.setWidth(900),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.teal[800]),
           borderRadius: BorderRadius.all(

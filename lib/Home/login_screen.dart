@@ -12,7 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
-  //TODO: ver porque quando mudo width na password muda a width do container 
+  //TODO: ver porque quando mudo width na password muda a width do container
 
   // Center e Container que definem a caixa do login
   Widget build(BuildContext context) {
@@ -28,8 +28,9 @@ class _LoginScreenState extends State<LoginScreen> {
   // Scaffold e Coluna que chama os widgets. O padding e necessario senao fica tudo encostado a caixa
   // o resizetoavoidbottominset faz com que o teclado fique por cima das widgets. mas nao e a melhor approach porque pode ficar por cima do password field.
   Widget loginButtonArea() => new Scaffold(
-        //resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: false,
         body: Container(
+          width: ScreenUtil.instance.setWidth(1100),
           decoration: BoxDecoration(
             // Box decoration takes a gradient
             gradient: LinearGradient(
@@ -47,10 +48,10 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          padding: EdgeInsets.symmetric(
-            horizontal: ScreenUtil.instance.setWidth(15),
-            vertical: ScreenUtil.instance.setHeight(100),
-          ),
+          // padding: EdgeInsets.symmetric(
+          //   horizontal: ScreenUtil.instance.setWidth(15),
+          //   vertical: ScreenUtil.instance.setHeight(100),
+          // ),
           child: Column(
             children: <Widget>[
               avatar(),
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // email field
   Container emailField() => Container(
-        // width: ScreenUtil.instance.setWidth(700),
+        width: ScreenUtil.instance.setWidth(900),
         // height: ScreenUtil.instance.setHeight(50),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.teal[800]),
@@ -110,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // password field
   Container passwordField() => Container(
-        //width: ScreenUtil.instance.setWidth(300),
+        width: ScreenUtil.instance.setWidth(900),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.teal[800]),
           borderRadius: BorderRadius.all(
