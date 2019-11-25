@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keep_it/Dashboard/main_dash.dart';
 import 'package:keep_it/Home/home_screen.dart';
-import 'package:keep_it/Home/teste.dart';
+
 
 void main() => runApp(MyApp());
 

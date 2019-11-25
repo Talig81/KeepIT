@@ -8,6 +8,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailCont = TextEditingController();
+  final passwordCont = TextEditingController(); 
   @override
   void initState() {
     super.initState();
@@ -36,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               emailField(),
               passwordField(),
               loginButton(),
+              backButton()
             ],
           ),
         ),
@@ -54,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // email field
   TextFormField emailField() => new TextFormField(
+        controller: emailCont,
         decoration:
             new InputDecoration(icon: Icon(Icons.email), labelText: 'Email'),
         onSaved: (String value) {},
@@ -64,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // password field
   TextFormField passwordField() => new TextFormField(
+    controller: passwordCont,
         decoration: new InputDecoration(
             icon: Icon(Icons.vpn_key), labelText: 'Password'),
         onSaved: (String value) {
@@ -87,17 +92,35 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           onPressed: () {
             Users c = new Users();
-            c.handleSignIn().whenComplete(
+            c.normalLogin(emailCont.text, passwordCont.text).whenComplete(
               () {
-                print(c.getName());
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Dashboard(c),
+                    builder: (context) => Dashboard(c: c),
                   ),
                 );
               },
             );
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+            side: BorderSide(color: Colors.transparent),
+          ),
+        ),
+      );
+
+      Widget backButton() => Container(
+        width: 100,
+        margin: EdgeInsets.symmetric(vertical: 10),
+        child: RaisedButton(
+          color: Colors.amber[200],
+          child: new Text(
+            'VOLTAR',
+            style: TextStyle(color: Colors.teal[800], fontSize: 10),
+          ),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/');
           },
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),

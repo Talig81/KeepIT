@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:convert' show json;
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dbcrypt/dbcrypt.dart';
+
 import "package:http/http.dart" as http;
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -17,6 +18,7 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 class Users {
   GoogleSignInAccount _currentUser;
   String name;
+  String token;
   String email;
   List<Receipts> receitas;
    Users(){
@@ -27,6 +29,34 @@ class Users {
     return this.name;
   }
 
+  Future<void> normalLogin(String email, String password ) async {
+    var url = 'http://95.179.135.81/users/login';
+    
+    var hashedPassword = new DBCrypt().hashpw(password, new DBCrypt().gensalt());
+      final http.Response response =
+        await http.post(url, body:{'password': password,'email': email});
+        this.token = json.decode(response.body)["token"];
+        
+  }
+
+  Future<void> addFatura(String nif, String preco, String date) async {
+    var url = 'http://95.179.135.81/receipts';
+    print("token de acesso: " + this.token);
+    final http.Response response =
+        await http.post(url,headers: {'authorization': this.token}, body:{'price': preco,'nif': nif,'date': date});
+        print("body da resposta " +response.body);
+  }
+
+  Future<void> normalRegister(String email, String password, String name) async{
+    print("Email: " + email);
+    var url = 'http://95.179.135.81/users/register';
+    //var hashedPassword = new DBCrypt().hashpw(password, new DBCrypt().gensalt());
+    final http.Response response =
+        await http.post(url, body:{'password': password,'email': email, 'name': name, 'type': '2'});
+        print("responsebody -----> " + response.body);
+        return "DEU";
+  }
+  
   
   Future<void> handleSignIn() async {
     try {
@@ -53,7 +83,7 @@ class Users {
 
   Future<void> handleSignOut() async {
     _googleSignIn.disconnect();
-    print(this.name + " SDFSDFD");
+  
   }
 
   

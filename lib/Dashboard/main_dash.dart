@@ -3,17 +3,31 @@ import 'package:keep_it/Home/user.dart';
 
 import './drawer_style.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   final Users c;
 
-  Dashboard(this.c);
+  const Dashboard({Key key, this.c}) : super(key: key);
+  _DashboardState createState() => _DashboardState();
+}
 
-  Widget testFunc(BuildContext context) => new Container(
-    child: RaisedButton(onPressed: (){
-      c.handleSignOut();
-      Navigator.pop(context);
-    },)
-  );
+class _DashboardState extends State<Dashboard> {
+  int _selected = 1;
+  TextEditingController nifCont = new TextEditingController();
+  TextEditingController priceCont = new TextEditingController();
+  TextEditingController dateCont = new TextEditingController();
+
+  var options = [];
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget testFunc(BuildContext context) => new Container(child: RaisedButton(
+        onPressed: () {
+          widget.c.handleSignOut();
+          Navigator.pop(context);
+        },
+      ));
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,26 +58,30 @@ class Dashboard extends StatelessWidget {
       body: new Center(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: receipts(context),
+          child: bottomChooser(context, _selected),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:  Colors.teal[400],
+        backgroundColor: Colors.teal[400],
         elevation: 7,
+        onTap: (int i) {
+          setState(() {
+            _selected = i;
+          });
+        },
+        currentIndex: _selected,
         items: const <BottomNavigationBarItem>[
-           
           BottomNavigationBarItem(
-            icon: Icon(Icons.volume_up),
-            title: Text('Pokemon'),
+            icon: Icon(Icons.add_circle),
+            title: Text('Adicionar'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('Business'),
+            icon: Icon(Icons.assignment),
+            title: Text('Faturas'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School'),
-
+            icon: Icon(Icons.pie_chart_outlined),
+            title: Text('Gráficos'),
           ),
         ],
       ),
@@ -99,6 +117,13 @@ class Dashboard extends StatelessWidget {
             Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
       );
 
+  Widget bottomChooser(BuildContext ctx, int picker) {
+    if (picker == 1)
+      return receipts(ctx);
+    else
+      return addFatura();
+  }
+
   Widget receipts(BuildContext context) => new ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
@@ -130,4 +155,85 @@ class Dashboard extends StatelessWidget {
       ),
     );
   }
+
+  Widget addFatura() => new Column(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: avatar(),
+          ),
+          Expanded(
+            child: Column(
+              children: <Widget>[
+                nifField(),
+                priceField(),
+                dateField(),
+                addButton(),
+              ],
+            ),
+            flex: 2,
+          ),
+        ],
+      );
+
+  Widget avatar() => Container(
+        margin: EdgeInsets.symmetric(vertical: 20),
+        child: CircleAvatar(
+          radius: 55,
+          
+          backgroundImage: AssetImage('images/background_logo.png'),
+        ),
+      );
+
+      TextFormField nifField() => new TextFormField(
+        controller: nifCont,
+        decoration:
+            new InputDecoration(icon: Icon(Icons.receipt), labelText: 'Email'),
+        onSaved: (String value) {},
+        validator: (String value) {
+          return value.contains('@') ? 'Do not use the @ char.' : null;
+        },
+      );
+
+      TextFormField priceField() => new TextFormField(
+        controller: priceCont,
+        decoration:
+            new InputDecoration(icon: Icon(Icons.money_off), labelText: 'Preço'),
+        onSaved: (String value) {},
+        validator: (String value) {
+          return value.contains('@') ? 'Do not use the @ char.' : null;
+        },
+      );
+
+      TextFormField dateField() => new TextFormField(
+        controller: dateCont,
+        decoration:
+            new InputDecoration(icon: Icon(Icons.timer), labelText: 'Data'),
+        onSaved: (String value) {},
+        validator: (String value) {
+          return value.contains('@') ? 'Do not use the @ char.' : null;
+        },
+      );
+
+      Widget addButton() => Container(
+        width: 100,
+        margin: EdgeInsets.symmetric(vertical: 10),
+        child: RaisedButton(
+          color: Colors.amber[200],
+          child: new Text(
+            'Adicionar',
+            style: TextStyle(color: Colors.teal[800], fontSize: 10),
+          ),
+          onPressed: () {
+            widget.c.addFatura(nifCont.text, priceCont.text, dateCont.text);
+            setState((){
+              _selected = 1;
+            });
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+            side: BorderSide(color: Colors.transparent),
+          ),
+        ),
+      );
 }
