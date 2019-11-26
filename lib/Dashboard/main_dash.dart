@@ -12,7 +12,7 @@ class Dashboard extends StatefulWidget {
 
 
 class _DashboardState extends State<Dashboard> {
-  int _selected = 1;
+  int _selected = 0;
   TextEditingController nifCont = new TextEditingController();
   TextEditingController priceCont = new TextEditingController();
   TextEditingController dateCont = new TextEditingController();

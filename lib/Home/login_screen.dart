@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       Widget backButton() => Container(
         width: 100,
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: EdgeInsets.symmetric(vertical: 5),
         child: RaisedButton(
           color: Colors.amber[200],
           child: new Text(

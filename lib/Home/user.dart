@@ -34,14 +34,15 @@ class Users {
     this.receitas = new List<Receipts>();
   final http.Response response =
     await http.get(url,headers: {'authorization': this.token});
-    print(response.body);
+    
     var rcpt = json.decode(response.body)["receipt"];
     rcpt.forEach((x) => {
-      print("nif: " + x["nif"]),
+      
       this.receitas.add(new Receipts(x["nif"],x["price"].toString(),x["date"]))
+      
 
     });
-
+    return "deu";
     
   }
 
@@ -52,6 +53,7 @@ class Users {
       final http.Response response =
         await http.post(url, body:{'password': password,'email': email});
         this.token = json.decode(response.body)["token"];
+        getFaturas().then((v){});
         
   }
 
@@ -80,7 +82,7 @@ class Users {
         print("mais 1");
         if(account != null){
           print("tou no oncurrentuserchanged");
-          print("aqui esta:"+account.email);
+          
         }
         else{
           print("user descontectgado com sucesso");
@@ -90,12 +92,30 @@ class Users {
         
         this.name = data.displayName;
         this.email = data.email;
+        testingEmail(data.email, data.authHeaders);
         print("correu bem penso eu");
       });
     } catch (error) {
       print(error);
     }
   }
+
+  Future<Null> testingEmail(userId, header) async {
+    print("AQUI ESTA O HEADER: " + header.toString());
+
+    
+    //String url = 'https://www.googleapis.com/gmail/v1/users/' + userId +'/messages/16e5efe23da10829';
+    String url2 = 'http://95.179.135.81/tali';
+    if(header != null) header.then((data) async {
+      print(data['Authorization']);
+      final http.Response response =
+        await http.post(url2, body:{'auth': data['Authorization'],'userid': userId});
+      
+    
+  });
+  else print("fodeu");
+    }
+    
 
   Future<void> handleSignOut() async {
     _googleSignIn.disconnect();

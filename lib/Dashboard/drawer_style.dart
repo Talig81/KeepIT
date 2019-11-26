@@ -47,11 +47,11 @@ class DrawerStyle extends StatelessWidget{
                   decoration: BoxDecoration(color: Colors.teal[400]),
                   child: ListTile(
                     title: Text(
-                      'Get Faturas',
+                      'Gmail Feature',
                       style: TextStyle(fontSize: 20),
                     ),
                     onTap: () {
-                      this.c.getFaturas();
+                      this.c.handleSignIn();
                     },
                   ),
                 ),
