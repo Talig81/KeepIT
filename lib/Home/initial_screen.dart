@@ -7,7 +7,7 @@ class InitialScreen extends StatelessWidget {
   // Coluna que contem o logo, o botao registar e o texto de entrar aqui
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         logo(),
         buttonRegister(context),
@@ -20,7 +20,7 @@ class InitialScreen extends StatelessWidget {
 
   Widget logo() => Center(
         child: Container(
-          padding: EdgeInsets.only(top: 20, bottom: 40),
+          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 60),
           alignment: Alignment.center,
           child: Image.asset(
             'images/mascote.png',
@@ -50,7 +50,7 @@ class InitialScreen extends StatelessWidget {
       );
 
   Widget textLogin(BuildContext context) => Container(
-        margin: EdgeInsets.only(bottom: 50),
+        margin: EdgeInsets.only(bottom: 60),
         child: new RichText(
           text: new TextSpan(
             children: [

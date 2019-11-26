@@ -10,24 +10,25 @@ class Dashboard extends StatefulWidget {
   _DashboardState createState() => _DashboardState();
 }
 
+
 class _DashboardState extends State<Dashboard> {
   int _selected = 1;
   TextEditingController nifCont = new TextEditingController();
   TextEditingController priceCont = new TextEditingController();
   TextEditingController dateCont = new TextEditingController();
 
+  void exit(){
+    widget.c.handleSignOut();
+    Navigator.pop(context);
+  }
   var options = [];
   @override
   void initState() {
     super.initState();
   }
 
-  Widget testFunc(BuildContext context) => new Container(child: RaisedButton(
-        onPressed: () {
-          widget.c.handleSignOut();
-          Navigator.pop(context);
-        },
-      ));
+  
+      
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,12 +50,9 @@ class _DashboardState extends State<Dashboard> {
             ],
           ),
         ),
-        actions: <Widget>[
-          testFunc(context),
-        ],
         backgroundColor: Colors.teal[400],
       ),
-      drawer: DrawerStyle(),
+      drawer: DrawerStyle(exit: this.exit,c: widget.c),
       body: new Center(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -88,7 +86,7 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  Widget makeListTile() => new ListTile(
+  Widget makeListTile(int i) => new ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         leading: Container(
           padding: EdgeInsets.only(right: 12.0),
@@ -102,7 +100,7 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
         title: Text(
-          "Fatura: 1234",
+          "Fatura: "+widget.c.receitas[i].company,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
@@ -110,7 +108,7 @@ class _DashboardState extends State<Dashboard> {
         subtitle: Row(
           children: <Widget>[
             Icon(Icons.attach_money, color: Colors.yellowAccent),
-            Text(" 10 paus", style: TextStyle(color: Colors.white))
+            Text(widget.c.receitas[i].price.toString()+" euros", style: TextStyle(color: Colors.white))
           ],
         ),
         trailing:
@@ -119,7 +117,14 @@ class _DashboardState extends State<Dashboard> {
 
   Widget bottomChooser(BuildContext ctx, int picker) {
     if (picker == 1)
-      return receipts(ctx);
+      if(widget.c.receitas == null){
+        return Center(child: Container(
+          child: Text("Não tem faturas :(",style: TextStyle(color: Colors.white,fontSize: 30))
+        ),);
+      }
+      else{
+        return receipts(ctx);
+      }
     else
       return addFatura();
   }
@@ -127,18 +132,18 @@ class _DashboardState extends State<Dashboard> {
   Widget receipts(BuildContext context) => new ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: 10,
+        itemCount: widget.c.receitas.length,
         itemBuilder: (BuildContext context, int index) {
-          return makeCard();
+          return makeCard(index);
         },
       );
 
-  Widget makeCard() => new Card(
+  Widget makeCard(int i) => new Card(
         elevation: 8.0,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         child: Container(
           decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-          child: makeListTile(),
+          child: makeListTile(i),
         ),
       );
 

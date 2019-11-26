@@ -6,8 +6,17 @@ class Receipts{
   String id;
   String company;
   String categoria;
-  Float price;
+  String date;
+  String price;
   String user;
+  
+
+  Receipts(String id, String price, String date){
+    this.date = date;
+    this.company = id;
+    this.price = price;
+    
+  }
 
 
   void setId(String iid){

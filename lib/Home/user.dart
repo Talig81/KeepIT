@@ -29,6 +29,22 @@ class Users {
     return this.name;
   }
 
+  Future<void> getFaturas() async {
+    var url = 'http://95.179.135.81/receipts';
+    this.receitas = new List<Receipts>();
+  final http.Response response =
+    await http.get(url,headers: {'authorization': this.token});
+    print(response.body);
+    var rcpt = json.decode(response.body)["receipt"];
+    rcpt.forEach((x) => {
+      print("nif: " + x["nif"]),
+      this.receitas.add(new Receipts(x["nif"],x["price"].toString(),x["date"]))
+
+    });
+
+    
+  }
+
   Future<void> normalLogin(String email, String password ) async {
     var url = 'http://95.179.135.81/users/login';
     
