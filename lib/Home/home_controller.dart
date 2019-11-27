@@ -16,15 +16,17 @@ class _HomeControllerState extends State<HomeController> {
   }
 
   //Rotas para as widgets
-  
-  Widget build(BuildContext context){
+
+  Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/' : (context) => InitialScreen(),
-        '/register' : (context) => RegisterScreen(),
-        '/login' : (context) => LoginScreen(),
-        '/dashboard' : (context) => Dashboard(),
+        '/': (context) => InitialScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/login': (context) => LoginScreen(),
+        '/dashboard': (context) => Dashboard(),
       },
     );
   }

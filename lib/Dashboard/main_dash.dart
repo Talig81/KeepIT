@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'categories.dart';
 
 import './drawer_style.dart';
 
@@ -15,6 +19,19 @@ class _Dashboard extends State<Dashboard> {
   }
 
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    ScreenUtil.instance = ScreenUtil(
+      width: 1125.0,
+      height: 2436.0,
+      allowFontScaling: true,
+    )..init(context);
+
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
@@ -39,37 +56,36 @@ class _Dashboard extends State<Dashboard> {
       drawer: DrawerStyle(),
       body: Column(
         children: <Widget>[
-          categories(context),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            children: <Widget>[
+              Categories().categories(Colors.blue, '1'), //numero da categoria tambem serve como tag para distinguir os botoes
+              SizedBox(width: 10),
+              Categories().categories(Colors.pink, '2'),
+              SizedBox(width: 10),
+              Categories().categories(Colors.yellow, '3'),
+              SizedBox(width: 10),
+              Categories().categories(Colors.green, '4'),
+            ],
+          ),
+           SizedBox(
+            height: ScreenUtil.instance.setHeight(50),
+          ),
           receipts(context),
         ],
       ),
     );
   }
 
-  Widget categories(BuildContext context) => new Row(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 5),
-                width: 20,
-                height: 20,
-                child: FloatingActionButton(
-                  mini: true,
-                  backgroundColor: Colors.blue,
-                  elevation: 0,
-                  onPressed: () => {},
-                ),
-              ),
-              Text('Categoria 1')
-            ],
-          ),
-        ],
-      );
-
   Widget receipts(BuildContext context) => new Container(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-        constraints: BoxConstraints(maxWidth: 450, maxHeight: 300),
+        padding: EdgeInsets.symmetric(
+            vertical: ScreenUtil.instance.setWidth(15),
+            horizontal: ScreenUtil.instance.setWidth(50)),
+        constraints: BoxConstraints(
+            maxWidth: ScreenUtil.instance.setWidth(450),
+            maxHeight: ScreenUtil.instance.setWidth(300)),
         child: Card(
           child: ListView(
             children: <Widget>[

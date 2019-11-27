@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_it/Home/home_controller.dart';
 import 'package:keep_it/Home/home_screen.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Keep IT v0.0',
       //initialRoute: '/',
-      home: HomeScreen(),
+      home: HomeController(),
     );
   }
 }

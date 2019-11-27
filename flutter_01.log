@@ -1,0 +1,104 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run -d all
+
+## exception
+
+NoSuchMethodError: NoSuchMethodError: The method 'matchAsPrefix' was called on null.
+Receiver: null
+Tried calling: matchAsPrefix("Error: Could not resolve the package 'responsive' in 'package:responsive/flex_widget.dart'.", 0)
+
+```
+#0      Object.noSuchMethod (dart:core-patch/object_patch.dart:51:5)
+#1      _StringBase.startsWith (dart:core-patch/string_patch.dart:331:20)
+#2      StdoutHandler.handler (package:flutter_tools/src/compile.dart:109:17)
+#3      _rootRunUnary (dart:async/zone.dart:1132:38)
+#4      _CustomZone.runUnary (dart:async/zone.dart:1029:19)
+#5      _CustomZone.runUnaryGuarded (dart:async/zone.dart:931:7)
+#6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:336:11)
+#7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:263:7)
+#8      _SinkTransformerStreamSubscription._add (dart:async/stream_transformers.dart:68:11)
+#9      _EventSinkWrapper.add (dart:async/stream_transformers.dart:15:11)
+#10     _StringAdapterSink.add (dart:convert/string_conversion.dart:236:11)
+#11     _LineSplitterSink._addLines (dart:convert/line_splitter.dart:150:13)
+#12     _LineSplitterSink.addSlice (dart:convert/line_splitter.dart:125:5)
+#13     StringConversionSinkMixin.add (dart:convert/string_conversion.dart:163:5)
+#14     _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:120:24)
+#15     _rootRunUnary (dart:async/zone.dart:1132:38)
+#16     _CustomZone.runUnary (dart:async/zone.dart:1029:19)
+#17     _CustomZone.runUnaryGuarded (dart:async/zone.dart:931:7)
+#18     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:336:11)
+#19     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:263:7)
+#20     _SinkTransformerStreamSubscription._add (dart:async/stream_transformers.dart:68:11)
+#21     _EventSinkWrapper.add (dart:async/stream_transformers.dart:15:11)
+#22     _StringAdapterSink.add (dart:convert/string_conversion.dart:236:11)
+#23     _StringAdapterSink.addSlice (dart:convert/string_conversion.dart:241:7)
+#24     _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:312:20)
+#25     _Utf8ConversionSink.add (dart:convert/string_conversion.dart:305:5)
+#26     _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:72:18)
+#27     _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:120:24)
+#28     _rootRunUnary (dart:async/zone.dart:1132:38)
+#29     _CustomZone.runUnary (dart:async/zone.dart:1029:19)
+#30     _CustomZone.runUnaryGuarded (dart:async/zone.dart:931:7)
+#31     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:336:11)
+#32     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:263:7)
+#33     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:764:19)
+#34     _StreamController._add (dart:async/stream_controller.dart:640:7)
+#35     _StreamController.add (dart:async/stream_controller.dart:586:5)
+#36     _Socket._onData (dart:io-patch/socket_patch.dart:1791:41)
+#37     _rootRunUnary (dart:async/zone.dart:1136:13)
+#38     _CustomZone.runUnary (dart:async/zone.dart:1029:19)
+#39     _CustomZone.runUnaryGuarded (dart:async/zone.dart:931:7)
+#40     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:336:11)
+#41     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:263:7)
+#42     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:764:19)
+#43     _StreamController._add (dart:async/stream_controller.dart:640:7)
+#44     _StreamController.add (dart:async/stream_controller.dart:586:5)
+#45     new _RawSocket.<anonymous closure> (dart:io-patch/socket_patch.dart:1339:33)
+#46     _NativeSocket.issueReadEvent.issue (dart:io-patch/socket_patch.dart:860:14)
+#47     _microtaskLoop (dart:async/schedule_microtask.dart:41:21)
+#48     _startMicrotaskLoop (dart:async/schedule_microtask.dart:50:5)
+#49     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:116:13)
+#50     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:173:5)
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, v1.9.1+hotfix.5, on Mac OS X 10.14.6 18G103, locale en-PT)
+    [32m•[39m Flutter version 1.9.1+hotfix.5 at /Users/saraalexandradasilvapereira/Desktop/PEI/flutter
+    [32m•[39m Framework revision 1aedbb1835 (5 weeks ago), 2019-10-17 08:37:27 -0700
+    [32m•[39m Engine revision b863200c37
+    [32m•[39m Dart version 2.5.0
+
+[33m[!][39m Android toolchain - develop for Android devices (Android SDK version 29.0.2)
+    [32m•[39m Android SDK at /Users/saraalexandradasilvapereira/Library/Android/sdk
+    [32m•[39m Android NDK location not configured (optional; useful for native profiling support)
+    [32m•[39m Platform android-29, build-tools 29.0.2
+    [32m•[39m Java binary at: /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/bin/java
+    [32m•[39m Java version Java(TM) SE Runtime Environment (build 9.0.1+11)
+    [31m✗[39m Android license status unknown.
+      Try re-installing or updating your Android SDK Manager.
+      See https://developer.android.com/studio/#downloads or visit https://flutter.dev/setup/#android-setup for detailed instructions.
+
+[32m[✓][39m Xcode - develop for iOS and macOS (Xcode 11.2)
+    [32m•[39m Xcode at /Applications/Xcode-beta.app/Contents/Developer
+    [32m•[39m Xcode 11.2, Build version 11B44
+    [32m•[39m CocoaPods version 1.8.3
+
+[33m[!][39m Android Studio (not installed)
+    [32m•[39m Android Studio not found; download from https://developer.android.com/studio/index.html
+      (or visit https://flutter.dev/setup/#android-setup for detailed instructions).
+
+[32m[✓][39m VS Code (version 1.40.1)
+    [32m•[39m VS Code at /Applications/Visual Studio Code.app/Contents
+    [32m•[39m Flutter extension version 3.6.0
+
+[32m[✓][39m Connected device (2 available)
+    [32m•[39m iPhone 8  • 15D1B101-6387-4AD6-AF25-3256AF46C900 • ios • com.apple.CoreSimulator.SimRuntime.iOS-13-2 (simulator)
+    [32m•[39m iPhone 11 • E280A8A8-D98B-42FF-BAB1-E255E8B22842 • ios • com.apple.CoreSimulator.SimRuntime.iOS-13-2 (simulator)
+
+[33m![39m Doctor found issues in 2 categories.
+```

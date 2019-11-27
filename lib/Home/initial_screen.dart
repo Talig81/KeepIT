@@ -1,22 +1,28 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/services.dart';
 
 class InitialScreen extends StatelessWidget {
   @override
-
   //TODO: meter responsive no fontSize
   //TODO: tentar reciclar o codigo do screenUtil
-  
+
   // Coluna que contem o logo, o botao registar e o texto de entrar aqui
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     ScreenUtil.instance = ScreenUtil(
-      width: 1100.0,
-      height: 1800.0,
+      width: 1125.0,
+      height: 2436.0,
       allowFontScaling: true,
     )..init(context);
 
     return Container(
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         // Box decoration takes a gradient
         gradient: LinearGradient(
@@ -46,10 +52,10 @@ class InitialScreen extends StatelessWidget {
 
   // ---------------- WIDGETS
 
-  Widget logo() => Center(
+  Widget logo() => Flexible(
         child: Container(
           padding: EdgeInsets.only(
-            top: ScreenUtil.instance.setWidth(200.0),
+            top: ScreenUtil.instance.setWidth(300.0),
             //bottom: ScreenUtil.instance.setWidth(20),
           ),
           alignment: Alignment.center,
@@ -63,58 +69,62 @@ class InitialScreen extends StatelessWidget {
         ),
       );
 
-  Widget buttonRegister(BuildContext context) => Container(
-        padding: EdgeInsets.only(
+  Widget buttonRegister(BuildContext context) => Flexible(
+        child: Container(
+          padding: EdgeInsets.only(
             top: ScreenUtil.instance.setWidth(200.0),
             bottom: ScreenUtil.instance.setWidth(100),
           ),
-        child: ButtonTheme(
-          minWidth: ScreenUtil.instance.setWidth(500),
-          height: ScreenUtil.instance.setHeight(80.0),
-          child: new RaisedButton(
-            color: Colors.teal[100],
-            child: new Text(
-              'Registar',
-              style: TextStyle(
-                color: Colors.teal[800],
-                fontSize: 23,
+          child: ButtonTheme(
+            minWidth: ScreenUtil.instance.setWidth(500),
+            height: ScreenUtil.instance.setHeight(120.0),
+            child: new RaisedButton(
+              color: Colors.teal[100],
+              child: new Text(
+                'Registar',
+                style: TextStyle(
+                  color: Colors.teal[800],
+                  fontSize: 20,
+                ),
               ),
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(20.0),
+              ),
+              onPressed: () {
+                Navigator.popAndPushNamed(context, '/register');
+              },
             ),
-            shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(20.0),
-            ),
-            onPressed: () {
-              Navigator.popAndPushNamed(context, '/register');
-            },
           ),
         ),
       );
 
-  Widget textLogin(BuildContext context) => Container(
-        margin: EdgeInsets.only(bottom: ScreenUtil.instance.setWidth(150)),
-        child: new RichText(
-          text: new TextSpan(
-            children: [
-              new TextSpan(
-                text: 'Já tem conta? ',
-                style: new TextStyle(
-                  color: Colors.teal[900],
-                  fontSize: 15,
-                ),
-              ),
-              new TextSpan(
-                text: 'Entrar aqui',
-                style: new TextStyle(
-                    decoration: TextDecoration.underline,
+  Widget textLogin(BuildContext context) => Flexible(
+        child: Container(
+          margin: EdgeInsets.only(bottom: ScreenUtil.instance.setWidth(150)),
+          child: new RichText(
+            text: new TextSpan(
+              children: [
+                new TextSpan(
+                  text: 'Já tem conta? ',
+                  style: new TextStyle(
                     color: Colors.teal[900],
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
-                recognizer: new TapGestureRecognizer()
-                  ..onTap = () {
-                    Navigator.popAndPushNamed(context, '/login');
-                  },
-              ),
-            ],
+                    fontSize: 15,
+                  ),
+                ),
+                new TextSpan(
+                  text: 'Entrar aqui',
+                  style: new TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.teal[900],
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                  recognizer: new TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.popAndPushNamed(context, '/login');
+                    },
+                ),
+              ],
+            ),
           ),
         ),
       );

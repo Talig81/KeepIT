@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
@@ -16,9 +17,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // Center e Container que definem a caixa do login
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     ScreenUtil.instance = ScreenUtil(
-      width: 1100.0,
-      height: 1800.0,
+      width: 1125.0,
+      height: 2436.0,
       allowFontScaling: true,
     )..init(context);
 
@@ -30,7 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget loginButtonArea() => new Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          width: ScreenUtil.instance.setWidth(1100),
+          padding: EdgeInsets.only(top: ScreenUtil.instance.setHeight(300)),
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             // Box decoration takes a gradient
             gradient: LinearGradient(
@@ -142,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // butao login
   Widget loginButton() => Container(
         padding: EdgeInsets.only(
-          top: ScreenUtil.instance.setWidth(300),
+          top: ScreenUtil.instance.setWidth(200),
         ),
         child: Column(
           children: [

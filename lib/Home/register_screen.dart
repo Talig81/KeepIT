@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/services.dart';
 
 class RegisterScreen extends StatefulWidget {
   // Se aparecer alguma vez o erro de "no material widget found" é porque aplicou se text fields sem scaffold ou material app antes.
@@ -16,9 +17,14 @@ class _RegisterScreen extends State<RegisterScreen> {
   }
 
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     ScreenUtil.instance = ScreenUtil(
-      width: 1100.0,
-      height: 1800.0,
+      width: 1125.0,
+      height: 2436.0,
       allowFontScaling: true,
     )..init(context);
 
@@ -28,7 +34,10 @@ class _RegisterScreen extends State<RegisterScreen> {
   Widget registerButtonArea() => new Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          width: ScreenUtil.instance.setWidth(1100),
+          padding: EdgeInsets.only(
+            top: ScreenUtil.instance.setHeight(300),
+          ),
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             // Box decoration takes a gradient
             gradient: LinearGradient(
@@ -45,9 +54,6 @@ class _RegisterScreen extends State<RegisterScreen> {
                 Colors.teal[600],
               ],
             ),
-          ),
-          padding: EdgeInsets.only(
-            top: ScreenUtil.instance.setWidth(80),
           ),
           child: Column(
             children: <Widget>[
@@ -170,12 +176,12 @@ class _RegisterScreen extends State<RegisterScreen> {
         children: <Widget>[
           Container(
             width: 200,
-            padding: EdgeInsets.only(top: 100),
+            padding: EdgeInsets.only(top: 50),
             child: new RaisedButton(
               color: Colors.teal[100],
               child: new Text(
                 'Registar',
-                style: TextStyle(color: Colors.teal[800]),
+                style: TextStyle(color: Colors.teal[800], fontSize: 20),
               ),
               onPressed: () {
                 Navigator.popAndPushNamed(context, '/');
