@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
+import 'package:keep_it/Home/Home_Widgets/logo.dart';
+import 'package:keep_it/Home/Home_Widgets/user_fields.dart';
+
+import 'Home_Widgets/registerLoginButton.dart';
 
 class RegisterScreen extends StatefulWidget {
-  // Se aparecer alguma vez o erro de "no material widget found" é porque aplicou se text fields sem scaffold ou material app antes.
-  //
-  // se calhar e melhor primeiro definir o container e o center e so depois meter o scaffold. o login_screen ta direito
   _RegisterScreen createState() => _RegisterScreen();
 }
 
@@ -34,20 +35,13 @@ class _RegisterScreen extends State<RegisterScreen> {
   Widget registerButtonArea() => new Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          padding: EdgeInsets.only(
-            top: ScreenUtil.instance.setHeight(300),
-          ),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            // Box decoration takes a gradient
             gradient: LinearGradient(
-              // Where the linear gradient begins and ends
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              // Add one stop for each color. Stops should increase from 0 to 1
               stops: [0.1, 0.5, 0.7, 0.9],
               colors: [
-                // Colors are easy thanks to Flutter's Colors class.
                 Colors.teal[100],
                 Colors.teal[200],
                 Colors.teal[300],
@@ -57,151 +51,11 @@ class _RegisterScreen extends State<RegisterScreen> {
           ),
           child: Column(
             children: <Widget>[
-              avatar(),
-              SizedBox(height: ScreenUtil.instance.setHeight(10)),
-              nameField(),
-              SizedBox(height: ScreenUtil.instance.setHeight(10)),
-              emailField(),
-              SizedBox(height: ScreenUtil.instance.setHeight(10)),
-              passField(),
-              registerButton(),
+              LogoKit(),
+              UserFields('Registar'),
+              RegisterLoginButton().button(context, 'Registar', '/'),
             ],
           ),
         ),
-      );
-
-  Widget avatar() => Container(
-        width: ScreenUtil.instance.setWidth(500),
-        height: ScreenUtil.instance.setHeight(600),
-        alignment: Alignment.center,
-        padding: EdgeInsets.only(
-          top: ScreenUtil.instance.setWidth(50),
-        ),
-        child: Image.asset(
-          'images/mascote.png',
-        ),
-      );
-
-  Container nameField() => Container(
-        width: ScreenUtil.instance.setWidth(900),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.teal[800]),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10.0),
-          ),
-        ),
-        child: Theme(
-          data: ThemeData(primaryColor: Colors.teal[900]),
-          child: new TextFormField(
-            cursorColor: Colors.teal[900],
-            decoration: new InputDecoration(
-              border: InputBorder.none,
-              hintText: "Nome",
-              icon: Icon(Icons.person),
-              hintStyle: TextStyle(
-                fontSize: 16.0,
-                color: Colors.teal[900],
-                inherit: false,
-              ),
-            ),
-            onSaved: (String value) {},
-            validator: (String value) {
-              return value.contains('@') ? 'Do not use the @ char.' : null;
-            },
-          ),
-        ),
-      );
-
-  Container emailField() => Container(
-        width: ScreenUtil.instance.setWidth(900),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.teal[800]),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10.0),
-          ),
-        ),
-        child: Theme(
-          data: ThemeData(primaryColor: Colors.teal[900]),
-          child: new TextFormField(
-            cursorColor: Colors.teal[900],
-            decoration: new InputDecoration(
-              border: InputBorder.none,
-              hintText: "Email",
-              icon: Icon(Icons.email),
-              hintStyle: TextStyle(
-                fontSize: 16.0,
-                color: Colors.teal[900],
-                inherit: false,
-              ),
-            ),
-            onSaved: (String value) {},
-            validator: (String value) {
-              return value.contains('@') ? 'Do not use the @ char.' : null;
-            },
-          ),
-        ),
-      );
-
-  Container passField() => Container(
-        width: ScreenUtil.instance.setWidth(900),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.teal[800]),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10.0),
-          ),
-        ),
-        child: Theme(
-          data: ThemeData(primaryColor: Colors.teal[900]),
-          child: new TextFormField(
-            cursorColor: Colors.teal[900],
-            decoration: new InputDecoration(
-              border: InputBorder.none,
-              hintText: "Password",
-              icon: Icon(Icons.vpn_key),
-              hintStyle: TextStyle(
-                fontSize: 16.0,
-                color: Colors.teal[900],
-                inherit: false,
-              ),
-            ),
-            onSaved: (String value) {},
-            validator: (String value) {
-              return value.contains('@') ? 'Do not use the @ char.' : null;
-            },
-          ),
-        ),
-      );
-
-  Column registerButton() => Column(
-        children: <Widget>[
-          Container(
-            width: 200,
-            padding: EdgeInsets.only(top: 50),
-            child: new RaisedButton(
-              color: Colors.teal[100],
-              child: new Text(
-                'Registar',
-                style: TextStyle(color: Colors.teal[800], fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.popAndPushNamed(context, '/');
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(18.0),
-                side: BorderSide(color: Colors.transparent),
-              ),
-            ),
-          ),
-          FlatButton(
-            color: Colors.transparent,
-            child: Text('Já tem conta?',
-                style: TextStyle(
-                    color: Colors.teal[900],
-                    decoration: TextDecoration.underline)),
-            onPressed: () {
-              Navigator.pushNamed(context, '/login');
-            },
-          ),
-        ],
       );
 }

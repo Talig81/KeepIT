@@ -2,6 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
+import 'package:keep_it/Home/Home_Widgets/registerLoginButton.dart';
+
+import 'Home_Widgets/logo.dart';
+import 'Home_Widgets/registerLoginButton.dart';
 
 class InitialScreen extends StatelessWidget {
   @override
@@ -42,90 +46,15 @@ class InitialScreen extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          logo(),
-          buttonRegister(context),
-          textLogin(context),
+          LogoKit(),
+          RegisterLoginButton().button(
+            context,
+            'Registar',
+            '/register',
+          ),
         ],
       ),
     );
   }
 
-  // ---------------- WIDGETS
-
-  Widget logo() => Flexible(
-        child: Container(
-          padding: EdgeInsets.only(
-            top: ScreenUtil.instance.setWidth(300.0),
-            //bottom: ScreenUtil.instance.setWidth(20),
-          ),
-          alignment: Alignment.center,
-          child: SizedBox(
-            width: ScreenUtil.instance.setWidth(600.0),
-            height: ScreenUtil.instance.setHeight(700),
-            child: Image.asset(
-              'images/mascote.png',
-            ),
-          ),
-        ),
-      );
-
-  Widget buttonRegister(BuildContext context) => Flexible(
-        child: Container(
-          padding: EdgeInsets.only(
-            top: ScreenUtil.instance.setWidth(200.0),
-            bottom: ScreenUtil.instance.setWidth(100),
-          ),
-          child: ButtonTheme(
-            minWidth: ScreenUtil.instance.setWidth(500),
-            height: ScreenUtil.instance.setHeight(120.0),
-            child: new RaisedButton(
-              color: Colors.teal[100],
-              child: new Text(
-                'Registar',
-                style: TextStyle(
-                  color: Colors.teal[800],
-                  fontSize: 20,
-                ),
-              ),
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(20.0),
-              ),
-              onPressed: () {
-                Navigator.popAndPushNamed(context, '/register');
-              },
-            ),
-          ),
-        ),
-      );
-
-  Widget textLogin(BuildContext context) => Flexible(
-        child: Container(
-          margin: EdgeInsets.only(bottom: ScreenUtil.instance.setWidth(150)),
-          child: new RichText(
-            text: new TextSpan(
-              children: [
-                new TextSpan(
-                  text: 'Já tem conta? ',
-                  style: new TextStyle(
-                    color: Colors.teal[900],
-                    fontSize: 15,
-                  ),
-                ),
-                new TextSpan(
-                  text: 'Entrar aqui',
-                  style: new TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: Colors.teal[900],
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                  recognizer: new TapGestureRecognizer()
-                    ..onTap = () {
-                      Navigator.popAndPushNamed(context, '/login');
-                    },
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
 }

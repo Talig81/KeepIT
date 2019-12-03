@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:keep_it/Dashboard/receipts.dart';
 
 import 'categories.dart';
 
@@ -51,7 +52,7 @@ class _Dashboard extends State<Dashboard> {
             ],
           ),
         ),
-        backgroundColor: Colors.teal[400],
+        backgroundColor: Colors.teal[800],
       ),
       drawer: DrawerStyle(),
       body: Column(
@@ -73,26 +74,9 @@ class _Dashboard extends State<Dashboard> {
            SizedBox(
             height: ScreenUtil.instance.setHeight(50),
           ),
-          receipts(context),
+          Receipts(),
         ],
       ),
     );
   }
-
-  Widget receipts(BuildContext context) => new Container(
-        padding: EdgeInsets.symmetric(
-            vertical: ScreenUtil.instance.setWidth(15),
-            horizontal: ScreenUtil.instance.setWidth(50)),
-        constraints: BoxConstraints(
-            maxWidth: ScreenUtil.instance.setWidth(450),
-            maxHeight: ScreenUtil.instance.setWidth(300)),
-        child: Card(
-          child: ListView(
-            children: <Widget>[
-              Text('Ola1'),
-              Text('Ola2'),
-            ],
-          ),
-        ),
-      );
 }

@@ -14,7 +14,6 @@ class Categories extends StatelessWidget {
           Row(
             children: <Widget>[
               Container(
-              
                 padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(5)),
                 width: ScreenUtil.instance.setWidth(30),
                 height: ScreenUtil.instance.setHeight(30),
