@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:keep_it/Dashboard/receipts.dart';
-
-import 'categories.dart';
+import 'package:keep_it/Dashboard/categoriesList.dart';
+import 'package:keep_it/Dashboard/receipts2.dart';
 
 import './drawer_style.dart';
 
@@ -34,7 +33,7 @@ class _Dashboard extends State<Dashboard> {
     )..init(context);
 
     return Scaffold(
-      backgroundColor: Colors.green[100],
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: Text(
           'KeepIT',
@@ -52,27 +51,14 @@ class _Dashboard extends State<Dashboard> {
             ],
           ),
         ),
-        backgroundColor: Colors.teal[800],
+        backgroundColor: Colors.teal[500],
       ),
       drawer: DrawerStyle(),
       body: Column(
         children: <Widget>[
+          CategoriesList(),
           SizedBox(
             height: 5,
-          ),
-          Row(
-            children: <Widget>[
-              Categories().categories(Colors.blue, '1'), //numero da categoria tambem serve como tag para distinguir os botoes
-              SizedBox(width: 10),
-              Categories().categories(Colors.pink, '2'),
-              SizedBox(width: 10),
-              Categories().categories(Colors.yellow, '3'),
-              SizedBox(width: 10),
-              Categories().categories(Colors.green, '4'),
-            ],
-          ),
-           SizedBox(
-            height: ScreenUtil.instance.setHeight(50),
           ),
           Receipts(),
         ],

@@ -55,7 +55,7 @@ class _Receipts extends State<Receipts> {
         padding: EdgeInsets.all(20),
         //scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: 2,
+        itemCount: 3,
         separatorBuilder: (BuildContext context, int index) => const SizedBox(
           height: 15,
         ),
