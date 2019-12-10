@@ -17,7 +17,7 @@ class CategoriesList extends StatelessWidget {
   int i = 0;
 
   Widget categoriesList(BuildContext context) => SizedBox(
-        height: MediaQuery.of(context).size.height - 850,
+        height: MediaQuery.of(context).size.height / 20,
         child: new ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -30,14 +30,15 @@ class CategoriesList extends StatelessWidget {
               padding: EdgeInsets.only(
                 left: ScreenUtil.instance.setWidth(25),
                 right: ScreenUtil.instance.setWidth(13),
-                top: ScreenUtil.instance.setHeight(40),
+                top: ScreenUtil.instance.setHeight(35),
               ),
-              width: MediaQuery.of(context).size.width - 280,
+              width: MediaQuery.of(context).size.width / 5,
               height: 20,
               color: Colors.grey[300],
               child: Text(cat[i++],
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: ScreenUtil.instance.setWidth(37),
+                    fontFamily: 'OpenSans',
                   ),
                   textAlign: TextAlign.justify),
             );
