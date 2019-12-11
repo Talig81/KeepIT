@@ -7,17 +7,19 @@ class RegisterScreen extends StatefulWidget {
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen>{
+class _RegisterScreenState extends State<RegisterScreen> {
+  int _invalidMail = 0;
   TextEditingController nameCont = new TextEditingController();
   TextEditingController emailCont = new TextEditingController();
   TextEditingController passwordCont = new TextEditingController();
 
-@override
+  @override
   void initState() {
     super.initState();
   }
 
-  
+  // -------------------------- REFAZER COMO O LOGIN ----------------------------
+
   Widget build(BuildContext context) {
     return Center(
       child: Container(
@@ -27,7 +29,18 @@ class _RegisterScreenState extends State<RegisterScreen>{
     );
   }
 
+  Widget invalidMail() {
+    if (_invalidMail == 0)
+      return new Container();
+    else {
+      return new Container(
+          child: Text("Email inválido", style: TextStyle(color: Colors.red)),
+          margin: EdgeInsets.symmetric(vertical: 10));
+    }
+  }
+
   Widget registerButtonArea(BuildContext context) => new Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.green[100],
         body: Container(
           padding: EdgeInsets.symmetric(vertical: 40, horizontal: 15),
@@ -36,7 +49,8 @@ class _RegisterScreenState extends State<RegisterScreen>{
               nomeField(),
               emailField(),
               passwordField(),
-              SizedBox(height: 30),
+              invalidMail(),
+              SizedBox(height: 20),
               Container(
                 width: 200,
                 padding: EdgeInsets.only(top: 100),
@@ -53,12 +67,23 @@ class _RegisterScreenState extends State<RegisterScreen>{
                             emailCont.text, passwordCont.text, nameCont.text)
                         .then(
                       (onValue) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Dashboard(c: c),
-                          ),
-                        );
+                        switch (onValue) {
+                          case 200:
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Dashboard(c: c),
+                              ),
+                            );
+                            break;
+                          case 401:
+                            setState(() {
+                              _invalidMail = 1;
+                            });
+                            break;
+
+                          default:
+                        }
                       },
                     );
                   },

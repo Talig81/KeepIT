@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:keep_it/Home/user.dart';
 
@@ -5,30 +7,43 @@ import './drawer_style.dart';
 
 class Dashboard extends StatefulWidget {
   final Users c;
+  
 
   const Dashboard({Key key, this.c}) : super(key: key);
   _DashboardState createState() => _DashboardState();
 }
 
-
 class _DashboardState extends State<Dashboard> {
   int _selected = 0;
+  Timer _timer;
   TextEditingController nifCont = new TextEditingController();
   TextEditingController priceCont = new TextEditingController();
   TextEditingController dateCont = new TextEditingController();
 
-  void exit(){
+  void exit() {
     widget.c.handleSignOut();
+    widget.c.deletePrefs();
     Navigator.pop(context);
   }
+
+  void startTimer() {
+  
+
+}
+
   var options = [];
+
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+  
+    super.dispose();
   }
 
-  
-      
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +67,7 @@ class _DashboardState extends State<Dashboard> {
         ),
         backgroundColor: Colors.teal[400],
       ),
-      drawer: DrawerStyle(exit: this.exit,c: widget.c),
+      drawer: DrawerStyle(exit: this.exit, c: widget.c),
       body: new Center(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -100,7 +115,7 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
         title: Text(
-          "Fatura: "+widget.c.receitas[i].company,
+          "Fatura: " + widget.c.receitas[i].company,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
@@ -108,7 +123,8 @@ class _DashboardState extends State<Dashboard> {
         subtitle: Row(
           children: <Widget>[
             Icon(Icons.attach_money, color: Colors.yellowAccent),
-            Text(widget.c.receitas[i].price.toString()+" euros", style: TextStyle(color: Colors.white))
+            Text(widget.c.receitas[i].price.toString() + " euros",
+                style: TextStyle(color: Colors.white))
           ],
         ),
         trailing:
@@ -116,15 +132,15 @@ class _DashboardState extends State<Dashboard> {
       );
 
   Widget bottomChooser(BuildContext ctx, int picker) {
-    if (picker == 1)
-      if(widget.c.receitas == null){
-        return Center(child: Container(
-          child: Text("Não tem faturas :(",style: TextStyle(color: Colors.white,fontSize: 30))
-        ),);
-      }
-      else{
-        return receipts(ctx);
-      }
+    if (picker == 1) if (widget.c.receitas == null) {
+      return Center(
+        child: Container(
+            child: Text("Não tem faturas :(",
+                style: TextStyle(color: Colors.white, fontSize: 30))),
+      );
+    } else {
+      return receipts(ctx);
+    }
     else
       return addFatura();
   }
@@ -185,12 +201,11 @@ class _DashboardState extends State<Dashboard> {
         margin: EdgeInsets.symmetric(vertical: 20),
         child: CircleAvatar(
           radius: 55,
-          
           backgroundImage: AssetImage('images/background_logo.png'),
         ),
       );
 
-      TextFormField nifField() => new TextFormField(
+  TextFormField nifField() => new TextFormField(
         controller: nifCont,
         decoration:
             new InputDecoration(icon: Icon(Icons.receipt), labelText: 'Email'),
@@ -200,17 +215,17 @@ class _DashboardState extends State<Dashboard> {
         },
       );
 
-      TextFormField priceField() => new TextFormField(
+  TextFormField priceField() => new TextFormField(
         controller: priceCont,
-        decoration:
-            new InputDecoration(icon: Icon(Icons.money_off), labelText: 'Preço'),
+        decoration: new InputDecoration(
+            icon: Icon(Icons.money_off), labelText: 'Preço'),
         onSaved: (String value) {},
         validator: (String value) {
           return value.contains('@') ? 'Do not use the @ char.' : null;
         },
       );
 
-      TextFormField dateField() => new TextFormField(
+  TextFormField dateField() => new TextFormField(
         controller: dateCont,
         decoration:
             new InputDecoration(icon: Icon(Icons.timer), labelText: 'Data'),
@@ -220,7 +235,7 @@ class _DashboardState extends State<Dashboard> {
         },
       );
 
-      Widget addButton() => Container(
+  Widget addButton() => Container(
         width: 100,
         margin: EdgeInsets.symmetric(vertical: 10),
         child: RaisedButton(
@@ -231,7 +246,7 @@ class _DashboardState extends State<Dashboard> {
           ),
           onPressed: () {
             widget.c.addFatura(nifCont.text, priceCont.text, dateCont.text);
-            setState((){
+            setState(() {
               _selected = 1;
             });
           },
