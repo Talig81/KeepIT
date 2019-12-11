@@ -304,6 +304,11 @@ class _LoginScreenState extends State<LoginScreen> {
               builder: (context) => Dashboard(c: c),
             ),
           );
+           setState(
+            () {
+              creError = "";
+            },
+          );
         } else {
           setState(
             () {

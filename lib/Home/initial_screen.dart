@@ -32,7 +32,7 @@ class InitialScreen extends StatelessWidget {
     );
   }
 
-  // ---------------- WIDGETS
+  // ---------------- WIDGETS------------------------
 
   Widget logo() => Center(
         child: Container(

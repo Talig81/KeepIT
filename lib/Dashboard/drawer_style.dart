@@ -1,20 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:keep_it/Home/user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 class DrawerStyle extends StatelessWidget{
-  
   final Function exit;
   final Users c;
-
   const DrawerStyle({Key key, this.exit,this.c}) : super(key: key);
 
-  
-  
-  
-
-  
   @override
   Widget build(BuildContext context){
     return Theme(
@@ -122,7 +115,6 @@ class DrawerStyle extends StatelessWidget{
                     onTap: () {
                       exit();
                       Navigator.pop(context);
-                     
                     },
                   ),
                 )

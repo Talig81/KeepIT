@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:keep_it/Home/user.dart';
 import '../Dashboard/main_dash.dart';
-
 import './register_screen.dart';
 import './login_screen.dart';
 import './initial_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends StatefulWidget {
   _HomeControllerState createState() => _HomeControllerState();

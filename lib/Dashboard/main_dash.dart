@@ -1,51 +1,50 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:keep_it/Home/user.dart';
 
 import './drawer_style.dart';
 
 class Dashboard extends StatefulWidget {
   final Users c;
-  
 
   const Dashboard({Key key, this.c}) : super(key: key);
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
-  int _selected = 0;
+  int _selected = 1;
   Timer _timer;
+  var dummy;
   TextEditingController nifCont = new TextEditingController();
   TextEditingController priceCont = new TextEditingController();
   TextEditingController dateCont = new TextEditingController();
 
+  // FUNÇÕES DE LOGISTICA
   void exit() {
     widget.c.handleSignOut();
-    widget.c.deletePrefs();
     Navigator.pop(context);
   }
 
-  void startTimer() {
-  
-
-}
-
-  var options = [];
+  void getFaturas() {
+    widget.c.getFaturas().then((v) {
+    });
+  }
 
   @override
   void dispose() {
-  
     super.dispose();
   }
 
   @override
   void initState() {
-    startTimer();
     super.initState();
   }
 
+  // ESTRUTURA
   Widget build(BuildContext context) {
+    getFaturas();
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
@@ -101,6 +100,38 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
+  Widget bottomChooser(BuildContext ctx, int picker) {
+    if (widget.c.receitas.length != 0) {
+      return Center(
+        child: Container(
+            child: Text("Não tem faturas :(",
+                style: TextStyle(color: Colors.white, fontSize: 30))),
+      );
+    } else {
+      print(widget.c.receitas.length);
+      return receipts(ctx);
+    }
+  }
+
+  // BUILDING LIST OF RECEIPTS
+  Widget receipts(BuildContext context) => new ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: widget.c.receitas.length,
+        itemBuilder: (BuildContext context, int index) {
+          return makeCard(index);
+        },
+      );
+
+  Widget makeCard(int i) => new Card(
+        elevation: 8.0,
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        child: Container(
+          decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+          child: makeListTile(i),
+        ),
+      );
+
   Widget makeListTile(int i) => new ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         leading: Container(
@@ -129,38 +160,6 @@ class _DashboardState extends State<Dashboard> {
         ),
         trailing:
             Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
-      );
-
-  Widget bottomChooser(BuildContext ctx, int picker) {
-    if (picker == 1) if (widget.c.receitas == null) {
-      return Center(
-        child: Container(
-            child: Text("Não tem faturas :(",
-                style: TextStyle(color: Colors.white, fontSize: 30))),
-      );
-    } else {
-      return receipts(ctx);
-    }
-    else
-      return addFatura();
-  }
-
-  Widget receipts(BuildContext context) => new ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: widget.c.receitas.length,
-        itemBuilder: (BuildContext context, int index) {
-          return makeCard(index);
-        },
-      );
-
-  Widget makeCard(int i) => new Card(
-        elevation: 8.0,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        child: Container(
-          decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-          child: makeListTile(i),
-        ),
       );
 
   Widget circleImage() {
@@ -196,6 +195,8 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       );
+
+      // WIGETS QUE IRAO SER SUBSTITUIDAS PORQUE SAO UAM MERDAS
 
   Widget avatar() => Container(
         margin: EdgeInsets.symmetric(vertical: 20),

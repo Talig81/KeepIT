@@ -29,7 +29,7 @@ class Users {
 
   Future<void> deletePrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.clear();
+    prefs.clear();    
   }
 
   _save(String username, String token) async {
@@ -148,10 +148,8 @@ class Users {
         this.name = data.displayName;
         this.email = data.email;
         testingEmail(data.email, data.authHeaders);
-        p
       });
     } catch (error) {
-      print(error);
     }
   }
 
@@ -161,14 +159,14 @@ class Users {
     String url2 = 'http://95.179.135.81/tali';
     if (header != null)
       header.then((data) async {
-        
+        print(data['Authorization']);
         final http.Response response = await http.post(url2, body: {'auth': data['Authorization'], 'userid': userId});
       });
-    else
-      
+    
   }
 
   Future<void> handleSignOut() async {
     _googleSignIn.disconnect();
+    await deletePrefs();
   }
 }
