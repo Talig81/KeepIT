@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Keep IT v0.0',
-      
       home: HomeScreen(),
     );
   }

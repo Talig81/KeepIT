@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // Scaffold e Coluna que chama os widgets
-  // o resizetoavoidbottominset faz com que o teclado fique por cima das widgets. mas nao e a melhor approach porque pode ficar por cima do password field.
+  // o resizetoavoidbottominset faz com que o teclado fique por cima das widgets
   
   // structure
   Widget loginButtonArea() => new Scaffold(
