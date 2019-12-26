@@ -12,15 +12,28 @@ class _Receipts extends State<Receipts> {
   }
 
   Widget build(BuildContext context) {
-    return Stack(
-      //mainAxisSize: MainAxisSize.min,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Container(
+        Expanded(
+          flex: 0,
           child: receipts(context),
         ),
-        Positioned(
-          top: 20,
-          child: Container(child: Divider(color: Colors.red[800])),
+        Column(
+          children: <Widget>[
+            Expanded(
+              flex: 0,
+              child: Divider(color: Colors.teal[800]),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 155),
+                child: Text(
+              "Total = 1234",
+              style: TextStyle(
+                  color: Colors.teal[800], fontWeight: FontWeight.bold, fontSize: 30),
+              textAlign: TextAlign.right,
+            ))
+          ],
         )
       ],
     );
@@ -72,7 +85,6 @@ class _Receipts extends State<Receipts> {
   Widget receipts(BuildContext context) => new CustomScrollView(
         //scrollDirection: Axis.horizontal,
         //scrollDirection: Axis.horizontal,
-        semanticChildCount: 5,
         shrinkWrap: true,
         slivers: <Widget>[
           SliverList(
@@ -94,7 +106,7 @@ class _Receipts extends State<Receipts> {
 
         // separatorBuilder: (BuildContext context, int index) => Divider(
         //   indent: ScreenUtil.instance.setWidth(80),
-        //   endIndent: ScreenUtil.instance.setWi dth(80),
+        //   endIndent: ScreenUtil.instance.setWidth(80),
         //   color: Colors.teal[800],
         // ),
         // itemBuilder: (BuildContext context, int index) {
