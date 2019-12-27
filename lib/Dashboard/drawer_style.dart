@@ -1,7 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:keep_it/Home/user.dart';
+
 
 class DrawerStyle extends StatelessWidget{
+  final Function exit;
+  final Users c;
+  const DrawerStyle({Key key, this.exit,this.c}) : super(key: key);
+
   @override
   Widget build(BuildContext context){
     return Theme(
@@ -18,13 +24,13 @@ class DrawerStyle extends StatelessWidget{
                   padding: EdgeInsets.zero,
                   child: UserAccountsDrawerHeader(
                     accountName: Text(
-                        'TaliGay'), // mudar aqui quando houver ligação ao backend
-                    accountEmail: Text('taliGayisGay@buégay.com'),
+                        'João Cabra'), // mudar aqui quando houver ligação ao backend
+                    accountEmail: Text('kitkeepit@buégay.com'),
                     currentAccountPicture: CircleAvatar(
                       radius: 1,
                       backgroundColor: Colors.white,
                       child: Text(
-                        "T",
+                        "KIT",
                         style: TextStyle(fontSize: 30.0),
                       ),
                     ),
@@ -34,10 +40,12 @@ class DrawerStyle extends StatelessWidget{
                   decoration: BoxDecoration(color: Colors.teal[400]),
                   child: ListTile(
                     title: Text(
-                      'Premium features',
+                      'Gmail Feature',
                       style: TextStyle(fontSize: 20),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      this.c.handleSignIn();
+                    },
                   ),
                 ),
                 SizedBox(
@@ -50,7 +58,9 @@ class DrawerStyle extends StatelessWidget{
                       'Categorias',
                       style: TextStyle(fontSize: 20),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      
+                    },
                   ),
                 ),
                 SizedBox(
@@ -99,10 +109,13 @@ class DrawerStyle extends StatelessWidget{
                   decoration: BoxDecoration(color: Colors.teal[400]),
                   child: ListTile(
                     title: Text(
-                      'FAQ',
+                      'Sair',
                       style: TextStyle(fontSize: 20),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      exit();
+                      Navigator.pop(context);
+                    },
                   ),
                 )
               ],
