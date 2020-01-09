@@ -63,7 +63,9 @@ class DrawerStyle extends StatelessWidget{
                       'Estatísticas',
                       style: TextStyle(fontSize: 20),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.popAndPushNamed(context, '/dashboard/stats');
+                    },
                   ),
                 ),
                 SizedBox(

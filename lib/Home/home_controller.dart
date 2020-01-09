@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_it/Dashboard/stats_view.dart';
 import '../Dashboard/main_dash.dart';
 
 import './register_screen.dart';
@@ -27,6 +28,7 @@ class _HomeControllerState extends State<HomeController> {
         '/register': (context) => RegisterScreen(),
         '/login': (context) => LoginScreen(),
         '/dashboard': (context) => Dashboard(),
+        '/dashboard/stats': (context) => StatsView(),
       },
     );
   }

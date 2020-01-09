@@ -16,14 +16,30 @@ class _Receipts extends State<Receipts> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Container(
-          height: MediaQuery.of(context).size.height/2,
+          height: MediaQuery.of(context).size.height / 2,
           child: receipts(context),
         ),
         Column(
           children: <Widget>[
-            Expanded(
-              flex: 0,
-              child: Divider(color: Colors.teal[800]),
+            // Expanded(
+            //   flex: 0,
+            //   child: Divider(color: Colors.teal[800]),
+            // ),
+            SizedBox(
+              height: 20,
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Text(
+                "Ver todos",
+                style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Colors.teal[800]),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(
+              height: 40,
             ),
             Container(
                 padding: EdgeInsets.only(left: 155),
@@ -41,7 +57,8 @@ class _Receipts extends State<Receipts> {
     );
   }
 
-  Widget receipt() => new ListTile( //aqui vai ter que se meter a cena das faturas 
+  Widget receipt() => new ListTile(
+        //aqui vai ter que se meter a cena das faturas
         contentPadding: EdgeInsets.symmetric(
           horizontal: ScreenUtil.instance.setWidth(10.0),
           vertical: ScreenUtil.instance.setHeight(4.0),
@@ -77,53 +94,35 @@ class _Receipts extends State<Receipts> {
             Text(" 124 euros", style: TextStyle(color: Colors.teal[800]))
           ],
         ),
-        trailing: Icon(
-          Icons.keyboard_arrow_right,
-          color: Colors.teal[800],
-          size: ScreenUtil.instance.setWidth(50.0),
+        trailing: FlatButton(
+          onPressed: () {}, //meter aqui a mudar a rota para poder ver a info da fatura
+          child: Icon(
+            Icons.keyboard_arrow_right,
+            color: Colors.teal[800],
+            size: ScreenUtil.instance.setWidth(50.0),
+          ),
         ),
       );
 
   Widget receipts(BuildContext context) => ListView.separated(
-          physics: ClampingScrollPhysics(),
-          itemCount: 10,
-          separatorBuilder: (BuildContext context, int index) => Divider(
+        physics: ClampingScrollPhysics(),
+        itemCount: 10,
+        separatorBuilder: (BuildContext context, int index) {
+          return Divider(
             indent: ScreenUtil.instance.setWidth(90),
             endIndent: ScreenUtil.instance.setWidth(80),
             color: Colors.teal[800],
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            return Center(
-              //color: Colors.green[100],
-              child: Container(
-                width: MediaQuery.of(context).size.width - 100,
-                height: 80,
-                child: receipt(),
-              ),
-            );
-          },
-  );
+          );
+        },
+        itemBuilder: (BuildContext context, int index) {
+          return Center(
+            //color: Colors.green[100],
+            child: Container(
+              width: MediaQuery.of(context).size.width - 100,
+              height: 80,
+              child: receipt(),
+            ),
+          );
+        },
+      );
 }
-
-//scrollDirection: Axis.horizontal,
-//new CustomScrollView(
-//scrollDirection: Axis.horizontal,
-//   shrinkWrap: true,
-//   slivers: <Widget>[
-//     SliverList(
-//       delegate: SliverChildBuilderDelegate(
-//         (BuildContext context, int index) {
-//           return Container(
-//             alignment: Alignment.center,
-//             padding: EdgeInsets.all(
-//               ScreenUtil.instance.setWidth(20),
-//             ),
-//             //color: Colors.teal[100 * (index % 9)],
-//             child: IndexedSemantics(index: 0, child: receipt()),
-//           );
-//         },
-//         childCount: 5,
-//       ),
-//     ),
-//   ],
-// );
