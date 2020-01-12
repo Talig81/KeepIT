@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:keep_it/Dashboard/stats_charts.dart';
 import 'categoriesList.dart';
 import 'drawer_style.dart';
-
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class StatsView extends StatefulWidget {
   _StatsView createState() => _StatsView();
@@ -39,10 +39,11 @@ class _StatsView extends State<StatsView> {
       drawer: DrawerStyle(),
       body: Column(
         children: <Widget>[
-          CategoriesList(),
+          //CategoriesList(),
           SizedBox(
             height: 5,
           ),
+          StatsCharts(),
         ],
       ),
     );

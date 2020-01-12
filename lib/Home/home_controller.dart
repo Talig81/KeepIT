@@ -19,8 +19,6 @@ class _HomeControllerState extends State<HomeController> {
   //Rotas para as widgets
 
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
-
     return MaterialApp(
       initialRoute: '/',
       routes: {
