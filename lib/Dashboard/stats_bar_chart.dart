@@ -25,15 +25,27 @@ class _StatsBarChart extends State<StatsBarChart> {
           color: charts.ColorUtil.fromDartColor(Colors.blue)),
       ChartStuff(
           year: "2018",
-          category: "Veículos",
-          valueSpent: 1000,
+          category: "Transportes",
+          valueSpent: 100,
           color: charts.ColorUtil.fromDartColor(Colors.pink)),
       ChartStuff(
-          year: "2017",
-          category: "Imobiliária",
-          valueSpent: 5000,
-          color: charts.ColorUtil.fromDartColor(Colors.orange)),
-          
+        year: "2017",
+        category: "Despesas",
+        valueSpent: 700,
+        color: charts.ColorUtil.fromDartColor(Colors.orange),
+      ),
+      ChartStuff(
+        year: "2018",
+        category: "Serviços",
+        valueSpent: 800,
+        color: charts.ColorUtil.fromDartColor(Colors.purple),
+      ),
+      ChartStuff(
+        year: "2015",
+        category: "Restauração",
+        valueSpent: 80,
+        color: charts.ColorUtil.fromDartColor(Colors.yellow),
+      ),
     ];
     List<charts.Series<ChartStuff, String>> series = [
       charts.Series(

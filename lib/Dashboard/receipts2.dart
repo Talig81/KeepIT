@@ -44,7 +44,7 @@ class _Receipts extends State<Receipts> {
             Container(
                 padding: EdgeInsets.only(left: 155),
                 child: Text(
-                  "Total = 1234",
+                  "Total = 1234€",
                   style: TextStyle(
                       color: Colors.teal[800],
                       fontWeight: FontWeight.bold,

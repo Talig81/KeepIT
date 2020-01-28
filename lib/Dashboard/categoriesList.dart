@@ -17,13 +17,15 @@ class _CategoriesList extends State<CategoriesList> {
 
   final List cat = [
     //TODO: arranjar esta porra
-    'Compras',
+    'Restauração',
     'Saúde',
-    'Veículos',
-    'Imobiliária',
-    'Veterinária',
+    'Transportes',
+    'Despesas',
+    'Serviços',
+    'Educação',
+    'Outros',
   ];
-  int i = 0;
+  //int i = 0;
 
   Widget categoriesList(BuildContext context) => SizedBox(
         height: MediaQuery.of(context).size.height / 20,
@@ -36,20 +38,20 @@ class _CategoriesList extends State<CategoriesList> {
           itemCount: cat.length,
           itemBuilder: (context, index) {
             return Container(
-              padding: EdgeInsets.only(
-                left: ScreenUtil.instance.setWidth(25),
-                right: ScreenUtil.instance.setWidth(13),
-                top: ScreenUtil.instance.setHeight(35),
-              ),
-              width: MediaQuery.of(context).size.width / 4,
+              // padding: EdgeInsets.only(
+              //   left: ScreenUtil.instance.setWidth(25),
+              //   right: ScreenUtil.instance.setWidth(13),
+              //   top: ScreenUtil.instance.setHeight(35),
+              // ),
+              width: MediaQuery.of(context).size.width / 3.5,
               height: 20,
               color: Colors.grey[300],
               child: FlatButton(
                 onPressed: () {}, //TODO: mudar cor disto quando carregar 
-               // color: Colors.grey[500],
-                child: Text(cat[i++],
+                //color: Colors.grey[500],
+                child: Text(cat[index],
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 13,
                       fontFamily: 'OpenSans',
                     ),
                     textAlign: TextAlign.justify),

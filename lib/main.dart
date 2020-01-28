@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Keep IT v0.0',
       //initialRoute: '/',
-      home: Dashboard(), //AQUI TEM QUE SER HomeScreen()
+      home: StatsView(), //AQUI TEM QUE SER HomeScreen()
     );
   }
 }
