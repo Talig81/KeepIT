@@ -2,3 +2,6 @@ ios/Flutter/Flutter.framework/Flutter
 .idea
 .dart_tool
 .flutter-*
+pubspec.lock
+pubspec.yaml
+build
