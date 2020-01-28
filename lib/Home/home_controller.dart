@@ -26,7 +26,7 @@ class _HomeControllerState extends State<HomeController> {
         '/register': (context) => RegisterScreen(),
         '/login': (context) => LoginScreen(),
         '/dashboard': (context) => Dashboard(),
-        '/dashboard/stats': (context) => StatsView(),
+        //'/dashboard/stats': (context) => StatsView(),
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:keep_it/Dashboard/stats_charts.dart';
+import 'package:keep_it/Dashboard/stats_bar_chart.dart';
+import 'package:keep_it/Dashboard/stats_pie_chart.dart';
 import 'categoriesList.dart';
 import 'drawer_style.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -43,7 +44,8 @@ class _StatsView extends State<StatsView> {
           SizedBox(
             height: 5,
           ),
-          StatsCharts(),
+          StatsPieChart(),
+          StatsBarChart(),
         ],
       ),
     );

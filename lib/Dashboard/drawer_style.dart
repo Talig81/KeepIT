@@ -18,13 +18,13 @@ class DrawerStyle extends StatelessWidget{
                   padding: EdgeInsets.zero,
                   child: UserAccountsDrawerHeader(
                     accountName: Text(
-                        'TaliGay'), // mudar aqui quando houver ligação ao backend
-                    accountEmail: Text('taliGayisGay@buégay.com'),
+                        'Maria'), // mudar aqui quando houver ligação ao backend
+                    accountEmail: Text('mariafurtado@keepit.com'),
                     currentAccountPicture: CircleAvatar(
                       radius: 1,
                       backgroundColor: Colors.white,
                       child: Text(
-                        "T",
+                        "M",
                         style: TextStyle(fontSize: 30.0),
                       ),
                     ),

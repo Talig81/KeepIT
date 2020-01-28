@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CategoriesList extends StatelessWidget {
+class CategoriesList extends StatefulWidget {
+  _CategoriesList createState() => _CategoriesList();
+}
+
+class _CategoriesList extends State<CategoriesList> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return categoriesList(context);
   }
 
-  List cat = [
-    'Compras ',
-    'Saúde ',
-    'Veículos ',
-    'Compras ',
-    'Saúde ',
-    'Veículos '
+  final List cat = [
+    //TODO: arranjar esta porra
+    'Compras',
+    'Saúde',
+    'Veículos',
+    'Imobiliária',
+    'Veterinári',
   ];
   int i = 0;
 
@@ -35,12 +44,16 @@ class CategoriesList extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 5,
               height: 20,
               color: Colors.grey[300],
-              child: Text(cat[i++],
-                  style: TextStyle(
-                    fontSize: ScreenUtil.instance.setWidth(37),
-                    fontFamily: 'OpenSans',
-                  ),
-                  textAlign: TextAlign.justify),
+              child: FlatButton(
+                onPressed: () {}, //TODO: mudar cor disto quando carregar 
+                color: Colors.grey[500],
+                child: Text(cat[i++],
+                    style: TextStyle(
+                      fontSize: ScreenUtil.instance.setWidth(37),
+                      fontFamily: 'OpenSans',
+                    ),
+                    textAlign: TextAlign.justify),
+              ),
             );
           },
         ),
