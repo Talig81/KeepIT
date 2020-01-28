@@ -18,12 +18,12 @@ class RegisterLoginButton extends StatelessWidget {
           child: Column(
             children: <Widget>[
               ButtonTheme(
-                minWidth: ScreenUtil.instance.setWidth(500),
+                minWidth: MediaQuery.of(context).size.width/2.5,
                 height: ScreenUtil.instance.setHeight(120.0),
                 child: new RaisedButton(
                   color: Colors.teal[100],
                   child: new Text(
-                    '$nameButton',
+                    nameButton,
                     style: TextStyle(
                       color: Colors.teal[800],
                       fontSize: 20,
@@ -33,7 +33,7 @@ class RegisterLoginButton extends StatelessWidget {
                     borderRadius: new BorderRadius.circular(20.0),
                   ),
                   onPressed: () {
-                    Navigator.popAndPushNamed(context, '$route');
+                    Navigator.popAndPushNamed(context, route);
                   },
                 ),
               ),

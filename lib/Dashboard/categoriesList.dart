@@ -21,7 +21,7 @@ class _CategoriesList extends State<CategoriesList> {
     'Saúde',
     'Veículos',
     'Imobiliária',
-    'Veterinári',
+    'Veterinária',
   ];
   int i = 0;
 
@@ -33,7 +33,7 @@ class _CategoriesList extends State<CategoriesList> {
           padding: EdgeInsets.symmetric(
             horizontal: ScreenUtil.instance.setWidth(1.0),
           ),
-          itemCount: 6,
+          itemCount: cat.length,
           itemBuilder: (context, index) {
             return Container(
               padding: EdgeInsets.only(
@@ -41,15 +41,15 @@ class _CategoriesList extends State<CategoriesList> {
                 right: ScreenUtil.instance.setWidth(13),
                 top: ScreenUtil.instance.setHeight(35),
               ),
-              width: MediaQuery.of(context).size.width / 5,
+              width: MediaQuery.of(context).size.width / 4,
               height: 20,
               color: Colors.grey[300],
               child: FlatButton(
                 onPressed: () {}, //TODO: mudar cor disto quando carregar 
-                color: Colors.grey[500],
+               // color: Colors.grey[500],
                 child: Text(cat[i++],
                     style: TextStyle(
-                      fontSize: ScreenUtil.instance.setWidth(37),
+                      fontSize: 20,
                       fontFamily: 'OpenSans',
                     ),
                     textAlign: TextAlign.justify),

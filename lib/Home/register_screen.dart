@@ -53,7 +53,7 @@ class _RegisterScreen extends State<RegisterScreen> {
             children: <Widget>[
               LogoKit(),
               UserFields('Registar'),
-              RegisterLoginButton().button(context, 'Registar', '/'),
+              RegisterLoginButton().button(context, 'Registar', '/dashboard'),
             ],
           ),
         ),
