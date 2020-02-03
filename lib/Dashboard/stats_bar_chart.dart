@@ -60,11 +60,17 @@ class _StatsBarChart extends State<StatsBarChart> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height / 2.5,
-        padding: EdgeInsets.fromLTRB(50, 0, 0, 70),
+        padding: EdgeInsets.fromLTRB(30, 0, 0, 50),
         //color: Colors.blue[100],
         child: charts.BarChart(
           series,
-          barGroupingType: charts.BarGroupingType.grouped,
+          behaviors: [
+            charts.ChartTitle(
+              'Gastos Mensais',
+              innerPadding: 50,
+              titleOutsideJustification: charts.OutsideJustification.start
+            ),
+          ],
         ),
       ),
     );

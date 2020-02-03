@@ -16,7 +16,6 @@ class _CategoriesList extends State<CategoriesList> {
   }
 
   final List cat = [
-    //TODO: arranjar esta porra
     'Restauração',
     'Saúde',
     'Transportes',

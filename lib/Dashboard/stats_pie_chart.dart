@@ -47,7 +47,7 @@ class _StatsPieChart extends State<StatsPieChart> {
         color: charts.ColorUtil.fromDartColor(Colors.yellow),
       ),
     ];
-    
+
     List<charts.Series<ChartStuff, String>> series = [
       charts.Series(
           id: "Coisa",
@@ -66,16 +66,26 @@ class _StatsPieChart extends State<StatsPieChart> {
         child: charts.PieChart(
           series,
           behaviors: [
+            charts.ChartTitle(
+              'Total Gasto por Categoria',
+              innerPadding: 45,
+              titleOutsideJustification: charts.OutsideJustification.start
+            ),
             charts.DatumLegend(
-              position: charts.BehaviorPosition.end,
-              cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0), 
+              position: charts.BehaviorPosition.bottom,
+              cellPadding: new EdgeInsets.only(
+                right: 3.0,
+                bottom: 3.0,
+                top: .0
+              ),
+              desiredMaxColumns: 2,
               //outsideJustification: charts.OutsideJustification.endDrawArea,
               entryTextStyle: charts.TextStyleSpec(),
               showMeasures: true,
               legendDefaultMeasure: charts.LegendDefaultMeasure.firstValue,
               measureFormatter: (num value) {
-            return value == null ? '-' : '- $value€';
-          },
+                return value == null ? '-' : '- $value€';
+              },
             ),
           ],
         ),

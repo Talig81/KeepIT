@@ -15,7 +15,7 @@ class _StatsView extends State<StatsView> {
     super.initState();
   }
 
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
@@ -44,8 +44,16 @@ class _StatsView extends State<StatsView> {
           SizedBox(
             height: 5,
           ),
-          StatsPieChart(),
-          StatsBarChart(),
+          Card(
+            margin: EdgeInsets.all(15),
+            child: StatsPieChart(),
+            elevation: 5,
+          ),
+          Card(
+            margin: EdgeInsets.all(15),
+            child: StatsBarChart(),
+            elevation: 10,
+          ),
         ],
       ),
     );

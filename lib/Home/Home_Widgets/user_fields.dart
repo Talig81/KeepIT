@@ -103,6 +103,7 @@ class UserFields extends StatelessWidget {
         child: Theme(
           data: ThemeData(primaryColor: Colors.teal[900]),
           child: new TextFormField(
+            obscureText: true,
             cursorColor: Colors.teal[900],
             decoration: new InputDecoration(
               border: InputBorder.none,
