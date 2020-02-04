@@ -3,10 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keep_it/Dashboard/categoriesList.dart';
 import 'package:keep_it/Dashboard/receipts2.dart';
+import 'package:keep_it/user.dart';
 
 import './drawer_style.dart';
 
 class Dashboard extends StatefulWidget {
+  final Users user;
+
+  const Dashboard({Key key, this.user}) : super(key: key);
   _Dashboard createState() => _Dashboard();
 }
 
@@ -25,12 +29,6 @@ class _Dashboard extends State<Dashboard> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
-    ScreenUtil.instance = ScreenUtil(
-      width: 1125.0,
-      height: 2436.0,
-      allowFontScaling: true,
-    )..init(context);
 
     return Scaffold(
       backgroundColor: Colors.grey[50],
@@ -60,7 +58,9 @@ class _Dashboard extends State<Dashboard> {
           SizedBox(
             height: 5,
           ),
-          Receipts(),
+          Receipts(
+            user: widget.user,
+          ),
         ],
       ),
     );

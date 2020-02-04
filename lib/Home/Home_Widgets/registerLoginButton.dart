@@ -1,8 +1,27 @@
+import 'dart:developer';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:keep_it/Dashboard/main_dash.dart';
+import 'package:keep_it/user.dart';
 
-class RegisterLoginButton extends StatelessWidget {
+class RegisterLoginButton extends StatefulWidget {
+  RegisterLoginButton2 createState() => RegisterLoginButton2();
+}
+
+class RegisterLoginButton2 extends State<RegisterLoginButton> {
+  int _invalidMail = 0;
+  String creError = "";
+  final emailCont = TextEditingController();
+  final passwordCont = TextEditingController();
+  final nameCont = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     String nameButton, route;
     return button(context, nameButton, route);
@@ -18,7 +37,7 @@ class RegisterLoginButton extends StatelessWidget {
           child: Column(
             children: <Widget>[
               ButtonTheme(
-                minWidth: MediaQuery.of(context).size.width/2.5,
+                minWidth: MediaQuery.of(context).size.width / 2.5,
                 height: ScreenUtil.instance.setHeight(120.0),
                 child: new RaisedButton(
                   color: Colors.teal[100],
@@ -33,7 +52,8 @@ class RegisterLoginButton extends StatelessWidget {
                     borderRadius: new BorderRadius.circular(20.0),
                   ),
                   onPressed: () {
-                    Navigator.popAndPushNamed(context, route);
+                    Navigator.popAndPushNamed(context,
+                        route); //-------------REGISTAR--------------------
                   },
                 ),
               ),
@@ -60,7 +80,34 @@ class RegisterLoginButton extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                         recognizer: new TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.popAndPushNamed(context, '/login');
+                            //------------------Navigator.popAndPushNamed(context, '/login');
+                            Users user = new Users();
+                            user.normalLogin("teste", "teste").then(
+                              (onValue) {
+                                print(user.token);
+                                switch (onValue) {
+                                  
+                                  case 200:
+                                  print("fiz o teste teste");
+                                  
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            Dashboard(user: user),
+                                      ),
+                                    );
+                                    break;
+                                  case 401:
+                                    setState(() {
+                                      _invalidMail = 1;
+                                    });
+                                    break;
+
+                                  default:
+                                }
+                              },
+                            );
                           },
                       ),
                     ],
@@ -71,4 +118,41 @@ class RegisterLoginButton extends StatelessWidget {
           ),
         ),
       );
+
+  void login(BuildContext context) {
+    Users user = new Users();
+    user.normalLogin(emailCont.text, passwordCont.text).then(
+      (data) {
+        if (data == 200) {
+          this.emailCont.clear();
+          this.passwordCont.clear();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Dashboard(user: user),
+            ),
+          );
+          setState(
+            () {
+              creError = "";
+            },
+          );
+        } else {
+          setState(
+            () {
+              creError = "Password Errada";
+            },
+          );
+        }
+      },
+    ).catchError(
+      (f) {
+        setState(
+          () {
+            creError = "Servidor em baixo";
+          },
+        );
+      },
+    );
+  }
 }

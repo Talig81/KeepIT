@@ -47,7 +47,7 @@ class InitialScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           LogoKit(),
-          RegisterLoginButton().button(
+          RegisterLoginButton2().button(
             context,
             'Registar',
             '/register',

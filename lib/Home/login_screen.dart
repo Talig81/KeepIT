@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: <Widget>[
               LogoKit(),
               UserFields('Login'),
-              RegisterLoginButton().button(context, 'Login', '/dashboard')
+              RegisterLoginButton2().button(context, 'Login', '/dashboard')
             ],
           ),
         ),

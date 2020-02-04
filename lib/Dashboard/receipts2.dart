@@ -1,70 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keep_it/Dashboard/pdf_viewer.dart';
+import 'package:keep_it/user.dart';
 
 class Receipts extends StatefulWidget {
+  final Users user;
+  const Receipts({Key key, this.user}) : super(key: key);
   _Receipts createState() => _Receipts();
 }
 
 class _Receipts extends State<Receipts> {
+
+  List fatCat = [];
+  List price = [];
+  List col = [Colors.blue, Colors.pink, Colors.orange]; //mudar para "map" ou assim para associar categoria à cor 
+  List fatDat = [];
+
+  void getFat()  {
+  widget.user.getFaturas().then((data){
+    widget.user.receitas.forEach((fat) {
+      this.fatCat.add(fat.category);
+      this.price.add(fat.total);
+      this.fatDat.add(fat.date);
+      print("fatura");
+    },);
+    setState(() {
+      col.add(Colors.red);
+    });
+  });
+}
   @override
   void initState() {
+    
     super.initState();
+    this.getFat();
   }
 
-  List fatCat = [
-    'Restauração',
-    'Saúde',
-    'Transportes',
-    'Despesas',
-    'Serviços',
-    'Educação',
-    'Outros',
-    'Restauração',
-    'Saúde',
-    'Transportes'
-  ];
 
-  List col = [
-    Colors.yellow[700],
-    Colors.blue,
-    Colors.pink,
-    Colors.orange,
-    Colors.purple,
-    Colors.red,
-    Colors.green,
-    Colors.yellow[700],
-    Colors.blue,
-    Colors.pink,
-  ];
 
-  List fatDat = [
-    '20/04/2019',
-    '20/04/2019',
-    '21/04/2019',
-    '21/04/2019',
-    '21/04/2019',
-    '21/04/2019',
-    '22/04/2019',
-    '22/04/2019',
-    '22/04/2019',
-    '22/04/2019'
-  ];
 
-  List price = [
-    '124.00',
-    '0.70',
-    '5.00',
-    '43.25',
-    '3.99',
-    '54.90',
-    '0.30',
-    '6.99',
-    '0.65',
-    '10.32'
-  ];
+  
+
+
 
   Widget build(BuildContext context) {
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -136,7 +116,7 @@ class _Receipts extends State<Receipts> {
           ),
           child: Icon(
             Icons.receipt,
-            color: col[index],
+            //color: col[index],
             size: 35,
           ),
         ),
@@ -210,7 +190,7 @@ class _Receipts extends State<Receipts> {
 
   Widget receipts(BuildContext context) => ListView.separated(
         physics: ClampingScrollPhysics(),
-        itemCount: 10,
+        itemCount: fatDat.length,
         separatorBuilder: (BuildContext context, int index) {
           return Divider(
             indent: ScreenUtil.instance.setWidth(90),
@@ -229,4 +209,10 @@ class _Receipts extends State<Receipts> {
           );
         },
       );
+
+//--------------------------------------FUNCTIONS------------------------------------------------------
+
+
 }
+
+
