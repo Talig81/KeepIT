@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_it/Dashboard/stats_view.dart';
 import 'package:keep_it/Home/user.dart';
 import '../Dashboard/main_dash.dart';
 import './register_screen.dart';
@@ -25,7 +26,8 @@ class _HomeControllerState extends State<HomeController> {
         '/': (context) => InitialScreen(),
         '/register': (context) => RegisterScreen(),
         '/login': (context) => LoginScreen(),
-        '/dashboard': (context) => Dashboard(c: this.theuser),
+        '/dashboard': (context) => Dashboard(usrs: this.theuser),
+        '/dashboard/stats': (context) => StatsView(),
       },
     );
   }
@@ -36,7 +38,7 @@ class _HomeControllerState extends State<HomeController> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Dashboard(c: theuser),
+            builder: (context) => Dashboard(usrs: theuser),
           ),
         );
         Navigator.pop(context);

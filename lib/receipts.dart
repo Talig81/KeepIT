@@ -2,22 +2,21 @@ import 'dart:core';
 
 import 'dart:ffi';
 
-class Receipts{
+class Receipt{
   String id;
   String company;
-  String categoria;
+  String cae;
   String date;
   String price;
   String user;
-  
+  String category;
 
-  Receipts(String id, String price, String date){
+  Receipt(String id, String price, String date, String category){
     this.date = date;
     this.company = id;
-    this.price = price;
-    
+    this.price = price; 
+    this.category = category;
   }
-
 
   void setId(String iid){
     this.id = iid;

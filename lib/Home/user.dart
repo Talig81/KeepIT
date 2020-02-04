@@ -1,24 +1,17 @@
 import 'dart:async';
-import 'dart:convert' show json, utf8;
+import 'dart:convert' show json, jsonDecode, utf8;
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import "package:http/http.dart" as http;
-import 'package:google_sign_in/google_sign_in.dart';
+
 import '../receipts.dart';
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-    'email',
-    'https://www.googleapis.com/auth/gmail.readonly',
-  ],
-);
-
 class Users {
-  GoogleSignInAccount _currentUser;
+  int total=0;
   String name;
   String token;
   String email;
-  List<Receipts> receitas;
+  List<Receipt> receitas;
   Users() {
     this.email = "";
   }
@@ -29,7 +22,7 @@ class Users {
 
   Future<void> deletePrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.clear();    
+    prefs.clear();
   }
 
   _save(String username, String token) async {
@@ -55,24 +48,51 @@ class Users {
     }
   }
 
-  Future<void> getFaturas() async {
-    var url = 'https://95.179.135.81/receipts';
-    this.receitas = new List<Receipts>();
+  Future<String> getFaturasDifferent() async {
+    final url = 'http://142.93.140.126:2014/receipts';
+    this.receitas = new List<Receipt>();
+    this.receitas = new List<Receipt>();
+    Map<String, String> headers = {
+      "authorization": "Bearer " + this.token,
+      "Accept": "application/json",
+      "Content-type": "application/json"
+    };
+    final response = http.get(url, headers: headers);
+    await response.then((value) {
+      final cenas = jsonDecode(value.body);
+      var recp;
+      for (recp in cenas) {
+        int asdf = recp["total"];
+        this.total = asdf + total;
+         print("loopas " + total.toString());
+         
+        this.receitas.add(new Receipt(recp["company_id"].toString(), recp["total"].toString(),recp["date"] ,recp["category"]));
+       
+        
+      }
+      print(this.receitas.toString());
+      return("deu");
+    }).catchError((onError){
+      return ("erro");
+    });
 
+  }
+
+  Future<void> getFaturas() async {
+    var url = 'http://142.93.140.126:2014/receipts';
+    this.receitas = new List<Receipt>();
     HttpClient client = new HttpClient();
     client.badCertificateCallback =
         ((X509Certificate cert, String host, int port) => true);
     HttpClientRequest req = await client.getUrl(Uri.parse(url));
     req.headers.set('content-type', 'application/json');
-    req.headers.set('authorization', this.token);
+    req.headers.set('authorization', "Bearer " + this.token);
     HttpClientResponse response = await req.close();
     response.transform(utf8.decoder).listen((data) {
-      var rcpt = json.decode(data)["receipt"];
+      var rcpt = json.decode(data);
       if (rcpt != null) {
         rcpt.forEach((x) => {
-              this
-                  .receitas
-                  .add(new Receipts(x["nif"], x["price"].toString(), x["date"]))
+              
             });
         return "Added faturas";
       }
@@ -83,7 +103,7 @@ class Users {
     HttpClient client = new HttpClient();
     client.badCertificateCallback =
         ((X509Certificate cert, String host, int port) => true);
-    var url = 'https://95.179.135.81/users/login';
+    var url = 'http://142.93.140.126:2014/users/login';
     HttpClientRequest req = await client.postUrl(Uri.parse(url));
     req.headers.set('content-type', 'application/json');
     Map body = {
@@ -135,38 +155,14 @@ class Users {
     return response.statusCode;
   }
 
-  Future<void> handleSignIn() async {
-    try {
-      _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-        if (account != null) {
-          print("tou no oncurrentuserchanged");
-        } else {
-          print("user descontectgado com sucesso");
-        }
-      });
-      await _googleSignIn.signIn().then((data) {
-        this.name = data.displayName;
-        this.email = data.email;
-        testingEmail(data.email, data.authHeaders);
-      });
-    } catch (error) {
-    }
-  }
-
   Future<Null> testingEmail(userId, header) async {
-    
     //String url = 'https://www.googleapis.com/gmail/v1/users/' + userId +'/messages/16e5efe23da10829';
-    String url2 = 'http://95.179.135.81/tali';
+    String url2 = 'http://142.93.140.126:2014/tali';
     if (header != null)
       header.then((data) async {
         print(data['Authorization']);
-        final http.Response response = await http.post(url2, body: {'auth': data['Authorization'], 'userid': userId});
+        final http.Response response = await http.post(url2,
+            body: {'auth': data['Authorization'], 'userid': userId});
       });
-    
-  }
-
-  Future<void> handleSignOut() async {
-    _googleSignIn.disconnect();
-    await deletePrefs();
   }
 }

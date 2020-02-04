@@ -11,7 +11,7 @@ class InitialScreen extends StatelessWidget {
         Navigator.push(
           ctx,
           MaterialPageRoute(
-            builder: (context) => Dashboard(c: c),
+            builder: (context) => Dashboard(usrs: c),
           ),
         );
       }
