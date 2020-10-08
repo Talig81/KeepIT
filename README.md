@@ -14,7 +14,7 @@ The app is still in developtment, more to come !
 
 ## Contacts
 
-- [LinkedIn Oh belhote](https://www.linkedin.com/in/manuel-maria-474433157/)
+- [LinkedIn](https://www.linkedin.com/in/manuel-maria-474433157/)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
 For help call 915718440
